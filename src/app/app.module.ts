@@ -6,18 +6,30 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ApiTokenInterceptorService } from "./api/api-token-interceptor.service";
 import { SecurityModule } from './security/security.module';
-import { DummyPageComponent } from './dummy-page/dummy-page.component'; 
+import { DummyPageComponent } from './dummy-page/dummy-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { TripModule } from './trip/trip.module';
+import { MainPageComponent } from './main-page/main-page.component'; 
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    DummyPageComponent
+    DummyPageComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule, 
     HttpClientModule, 
-    SecurityModule
+    SecurityModule, 
+    BrowserAnimationsModule, 
+    MatButtonModule, 
+    MatSidenavModule, 
+    TripModule
   ],
   providers: [ 
     {

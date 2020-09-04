@@ -3,16 +3,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginPageComponent } from './security/login-page/login-page.component';
 import { DummyPageComponent } from './dummy-page/dummy-page.component';
 import { AuthGuard } from './security/guards/auth.guard';
+import { MainPageComponent } from './main-page/main-page.component';
 
 
 const routes: Routes = [
   // Add this default route to redirect to dummy
-  { path: "", redirectTo: "dummy", pathMatch: "full" },
+  { path: "", redirectTo: "main", pathMatch: "full" },
   { path: "login", component: LoginPageComponent },
   // Add the route to display the dummy page
   {
-    path: "dummy",
-    component: DummyPageComponent,
+    path: "main",
+    component: MainPageComponent,
     // Prevent access to this page to unauthenticated users
     canActivate: [AuthGuard],
   },

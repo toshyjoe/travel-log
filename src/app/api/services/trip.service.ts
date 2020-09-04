@@ -16,6 +16,14 @@ export class TripService {
   loadAllTrips(): Observable<Trip[]> {
     return this.http.get<Trip[]>(`${apiUrl}/trips?include=user`)
   }
+
+  loadAllTripsByUser(userId : String): Observable<Trip[]> {
+    return this.http.get<Trip[]>(`${apiUrl}/trips?include=user%user=${userId}`)
+  }
+
+  loadTripById(userId : String): Observable<Trip> {
+    return this.http.get<Trip>(`${apiUrl}/trips?include=user&id=${userId}`)
+  }
 }
 
 

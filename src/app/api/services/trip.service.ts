@@ -11,6 +11,8 @@ const apiUrl = "https://masrad-2020-tl-anthony.herokuapp.com/api";
 })
 export class TripService {
 
+  public selectedTrip : Trip; 
+
   constructor(private http: HttpClient) { }
 
   loadAllTrips(): Observable<Trip[]> {
@@ -18,12 +20,15 @@ export class TripService {
   }
 
   loadAllTripsByUser(userId : String): Observable<Trip[]> {
-    return this.http.get<Trip[]>(`${apiUrl}/trips?include=user%user=${userId}`)
+    return this.http
+    .get<Trip[]>(`${apiUrl}/trips?include=user&user=${userId}`)
+    
   }
 
   loadTripById(userId : String): Observable<Trip> {
     return this.http.get<Trip>(`${apiUrl}/trips?include=user&id=${userId}`)
   }
+
 }
 
 

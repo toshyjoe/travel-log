@@ -1,0 +1,11 @@
+
+<br>
+<h2 > Places ({{places.length}})</h2>
+
+<mat-action-list>
+    <button mat-list-item *ngFor="let place of places" >
+        {{place.name}}
+        <mat-divider></mat-divider>
+    </button>
+</mat-action-list>
+

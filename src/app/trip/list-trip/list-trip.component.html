@@ -1,0 +1,11 @@
+<h2>Mes voyages</h2>
+    <mat-action-list>
+        <span *ngFor="let trip of trips" > 
+            <app-trip [trip]="trip" (selected)="onTripSelected($event)"></app-trip>
+            
+        </span>
+
+    </mat-action-list>
+    
+<app-list-place [selectedTrip]="selectedTrip"  ></app-list-place>
+  

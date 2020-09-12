@@ -6,6 +6,7 @@ import { map, tap } from "rxjs/operators";
 import { User } from "../models/user";
 import { AuthRequest } from "../models/auth-request";
 import { environment } from "../../environments/environment"; 
+//import { userInfo } from 'os';
 
 // Add a constant for the storage key
 const STORAGE_KEY = "auth";
@@ -50,6 +51,7 @@ export class AuthService {
       map((auth) => (auth ? auth.user : undefined))
     );
   }
+
 
   /**
    * Retrieves the token string from the latest AuthResponse value

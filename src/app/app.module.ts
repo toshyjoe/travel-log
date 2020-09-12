@@ -12,6 +12,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { TripModule } from './trip/trip.module';
 import { MainPageComponent } from './main-page/main-page.component'; 
+import {MatListModule} from '@angular/material/list';
+import { CreatePlaceComponent } from './trip/create-place/create-place.component';
 
 
 
@@ -19,7 +21,8 @@ import { MainPageComponent } from './main-page/main-page.component';
   declarations: [
     AppComponent,
     DummyPageComponent,
-    MainPageComponent
+    MainPageComponent,
+    CreatePlaceComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import { MainPageComponent } from './main-page/main-page.component';
     BrowserAnimationsModule, 
     MatButtonModule, 
     MatSidenavModule, 
-    TripModule
+    TripModule, 
+    MatListModule
   ],
   providers: [ 
     {

@@ -1,3 +1,5 @@
+
+
 export class Trip {
     id: string;
     href: string;

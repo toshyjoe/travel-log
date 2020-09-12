@@ -1,3 +1,25 @@
-<p>main-page works!</p>
+
+
+
+<mat-sidenav-container>
+
+  <mat-sidenav #sidenav opened="true" mode="side">
+     
+    <app-list-trip></app-list-trip>
+    
+  </mat-sidenav>
+
+
+  
+  <mat-sidenav-content> 
+    <button mat-raised-button color="accent" (click)="sidenav.toggle()"> Mes voyages </button> 
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+
+
+
+  
 
 <app-create-trip></app-create-trip>

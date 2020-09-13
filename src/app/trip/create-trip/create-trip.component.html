@@ -1,7 +1,29 @@
 
   <div>
-      <h2> Create Trip </h2>
-    <p>
-      Bonjour ! 
-    </p>
+      <h2> Créer un voyage </h2>
+    
+      <form #creatTripForm="ngForm" (submit)="onSubmit(creatTripForm)"> 
+        <input type="text" 
+          placeholder="Titre"
+          [(ngModel)]="tripRequest.title"
+          name="title"
+          required
+          #title="ngModel"
+          > 
+
+          <span *ngIf="title.invalid&&title.touched"> Saisir un titre</span>
+
+          <input type="description" 
+          placeholder="Description"
+          [(ngModel)]="tripRequest.description"
+          name="description"
+          > 
+
+
+          <button type="submit" 
+            [disabled]="creatTripForm.invalid"> 
+            Ajouter 
+          </button>
+      </form>
+
   </div>

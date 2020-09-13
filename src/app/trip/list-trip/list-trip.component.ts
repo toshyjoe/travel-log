@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TripService } from 'src/app/api/services/trip.service';
 import { Trip } from 'src/app/models/trip';
 import { AuthService } from 'src/app/security/auth.service';
@@ -16,6 +16,7 @@ export class ListTripComponent implements OnInit {
   selectedTrip: Trip; 
   trips: Trip[] = []; 
   user: User;   
+  panelOpenState = false;
 
   
   constructor(private tripService: TripService, private authService:AuthService) { 
@@ -24,28 +25,41 @@ export class ListTripComponent implements OnInit {
 
 
   ngOnInit(): void {
-
-    // récupérer le user connecté pour passer 
-    //   l'id en paramètre de loadAllTripsByUser 
+    // récupérer le user connecté 
     this.authService.getUser().subscribe(user => this.user = user); 
 
+    // charger les Trips de l'utilisateur connecté
+    this.loadAllTripsByUser(); 
+  }
+
+
+
+  loadAllTripsByUser(){
+    this.trips = []; 
     this.tripService.loadAllTripsByUser(this.user.id)
     .subscribe(
       trips => {trips.forEach(
           trip => {this.trips.push(trip)
           }
-        )}
-    )
+        )},
+        err => {  /*gestion des erreurs à revoir */ 
+          console.warn(`Les voyages n'ont pas pu être chargés! `, err); 
+        }
+    ); 
+  }
 
-    /*
+
+  loadAllTrips(){
+    this.trips = []; 
     this.tripService.loadAllTrips()
     .subscribe(
       trips => {trips.forEach(
           trip => {this.trips.push(trip)
           }
         )}
-    ) */
+    )
   }
+
 
   onTripSelected(trip: Trip){
     this.selectedTrip = trip; 

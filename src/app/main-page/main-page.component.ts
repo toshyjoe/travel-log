@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TripService } from '../api/services/trip.service';
+import { Trip } from '../models/trip';
 
 @Component({
   selector: 'app-main-page',
@@ -8,8 +9,11 @@ import { TripService } from '../api/services/trip.service';
 })
 export class MainPageComponent implements OnInit {
 
+  @Input() selectedTrip : Trip; 
 
-  constructor(private tripService: TripService) { }
+  constructor(private tripService: TripService) { 
+
+  }
 
   ngOnInit(): void {
   }

@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { TripService } from 'src/app/api/services/trip.service';
 import { Trip } from 'src/app/models/trip';
 import { TripRequest } from 'src/app/models/trip-request';
+import { SharedService } from 'src/app/api/services/shared.service';
 
 
 
@@ -20,44 +21,37 @@ export class CreateTripComponent  {
   tripRequest: TripRequest; 
   trip: Trip; 
   createTripError: boolean;
+  hideToggle: string; 
   
  
 
-  constructor(private tripService: TripService, private router: Router) { 
+  constructor(private tripService: TripService, 
+              private router: Router, 
+              private data : SharedService) { 
+
     this.authRequest = new AuthRequest(); 
     this.tripRequest = new TripRequest(); 
     this.trip = new Trip(); 
-    this.trip.title = ''; 
   }
 
   ngOnInit(): void {
   }
 
  
-
-  submitForm(form: NgForm){
-    if (form.valid) {
-      console.log("Submitted ! "); 
-    
-      this.tripService.createTrip(this.trip); 
-
-    }
-    
-  }
-
   onSubmit(form: NgForm) {
-    // Only do something if the form is valid
+    console.log(" - inside submit "); 
     if (form.valid) {
-      // Hide any previous login error.
       this.createTripError = false;
 
-      
-      console.log("1 . inside submited form !  ")
-
-
-      // Perform the authentication request to the API.
       this.tripService.createTrip(this.tripRequest).subscribe({
-        next: () => console.log("trip created ü  ! "),
+        next: (newTrip) => {
+          //form.controls.title.markAsUntouched; 
+          this.tripRequest = new TripRequest(); 
+          //form.reset; 
+          form.form.reset; 
+          this.data.newTrip(null); 
+
+        },
         error: (err) => {
           this.createTripError = true;
           console.warn(`Trip creation failed: ${err.message}`);

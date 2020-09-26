@@ -11,6 +11,9 @@ import { ListPlaceComponent } from './list-place/list-place.component';
 import { PlaceComponent } from './place/place.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { DetailTripComponent } from './detail-trip/detail-trip.component';
+import { CreatePlaceComponent } from './create-place/create-place.component';
+import { DetailPlaceComponent } from './detail-place/detail-place.component';
 
 
 
@@ -22,7 +25,10 @@ import { FormsModule } from '@angular/forms';
     ListTripComponent, 
     ListPlaceComponent, 
     TripComponent, 
-    PlaceComponent],
+    PlaceComponent, 
+    DetailTripComponent, 
+    CreatePlaceComponent, 
+    DetailPlaceComponent],
   imports: [
     CommonModule, 
     MatListModule, 
@@ -32,7 +38,10 @@ import { FormsModule } from '@angular/forms';
   ], 
   exports: [
     CreateTripComponent, 
-    ListTripComponent
+    ListTripComponent, 
+    ListPlaceComponent, 
+    DetailTripComponent,
+    DetailPlaceComponent
   ], 
 })
 export class TripModule { }

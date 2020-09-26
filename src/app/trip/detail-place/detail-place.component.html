@@ -1,0 +1,14 @@
+
+
+
+<div [hidden]="!currentPlace.id"> 
+    <h2> Détails de la place  </h2>
+    <p><strong>{{currentPlace.name}} </strong></p>
+    <p>{{currentPlace.description}}</p>
+    <small> Créé le {{ currentPlace.createdAt | date }}</small> <br>
+    <small> Modifié le {{ currentPlace.updatedAt | date }}</small> <br>
+<button  [hidden]="!isTripOfUser()"  (click)="onDelete()"> Supprimer </button>
+<button  [hidden]="!isTripOfUser()" > Editer </button>
+<div [hidden]="!deleteError"> 
+    <span style="color:red"> Erreur lors de la suppression</span></div>
+</div>

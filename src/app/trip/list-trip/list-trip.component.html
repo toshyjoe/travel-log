@@ -1,27 +1,28 @@
 <h2>Voyages</h2>
 <button (click)="loadAllTripsByUser()"> Mes voyages </button>
-<button (click)="loadAllTrips()"> Inspirez-moi  </button>
+<button (click)="loadAllTrips()"> Tous  </button>
+
     <mat-action-list>
         <span *ngFor="let trip of trips" > 
             <app-trip [trip]="trip" (selected)="onTripSelected($event)"></app-trip>
         </span>
-
     </mat-action-list>
 
 
     <mat-accordion>
-        <mat-expansion-panel ShowToggle>
-          <mat-expansion-panel-header >
-            <mat-panel-title>
-              Ajouter voyage
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          
-          <app-create-trip></app-create-trip>
+      <mat-expansion-panel ShowToggle>
+        <mat-expansion-panel-header >
+          <mat-panel-title>
+            Ajouter voyage
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        
+        <app-create-trip></app-create-trip>
 
-        </mat-expansion-panel>
-    </mat-accordion>
+      </mat-expansion-panel>
+  </mat-accordion>
+
+  <br>
 
 <app-list-place [selectedTrip]="selectedTrip"  ></app-list-place>
-  
-  
+

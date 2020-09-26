@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { SharedService } from 'src/app/api/services/shared.service';
+import { Place } from 'src/app/models/place';
 import { Trip } from 'src/app/models/trip';
 
 @Component({
@@ -12,7 +14,7 @@ export class TripComponent implements OnInit {
   @Output() selected: EventEmitter<Trip>; 
   @Output() deletedTrip: EventEmitter<Trip>; 
 
-  constructor() {
+  constructor(private data : SharedService) {
     this.selected = new EventEmitter(); 
    }
 
@@ -21,6 +23,7 @@ export class TripComponent implements OnInit {
 
   onSelected(){
     this.selected.emit(this.trip); 
+    this.data.changePlace(new Place()); 
     //console.log(this.trip); 
   }
 

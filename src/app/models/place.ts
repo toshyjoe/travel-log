@@ -1,5 +1,6 @@
 import { GeoJsonPoint } from './geo-json-point';
 
+
 export class Place {
     id: string;
     href: string;

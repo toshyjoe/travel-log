@@ -1,7 +1,10 @@
-import { Component, OnInit, Input, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { Place } from 'src/app/models/place';
 import { Trip } from 'src/app/models/trip';
 import { PlaceService } from 'src/app/api/services/place.service';
+import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/security/auth.service';
+import { SharedService } from 'src/app/api/services/shared.service';
 
 @Component({
   selector: 'app-list-place',
@@ -10,12 +13,19 @@ import { PlaceService } from 'src/app/api/services/place.service';
 })
 export class ListPlaceComponent implements OnInit {
 
+  selectedPlace : Place; 
   places: Place[] = []; 
   @Input() selectedTrip: Trip; 
+  currentUser : User; 
+  isTripOfUser : boolean; 
 
-  constructor(private placeService: PlaceService) { 
-    // this.trip.id = '0ddf3f48-1f05-4d2f-bf51-dc11307ab11b'; 
-   
+  constructor(
+        private placeService: PlaceService, 
+        private authService: AuthService, 
+        private data : SharedService) { 
+
+    this.authService.getUser().subscribe(user => this.currentUser = user); 
+
   }
 
   ngOnInit(): void { 
@@ -25,7 +35,15 @@ export class ListPlaceComponent implements OnInit {
   // Recharge la liste des places lorsqu'un autre Trip est sélectionné 
   //   -> lorsque l'Input selectedTrip change 
   ngOnChanges(changes: SimpleChanges) {
-    this.loadPlacesByTrip(changes.selectedTrip.currentValue.id); 
+    if (this.selectedTrip != null) {
+      this.loadPlacesByTrip(changes.selectedTrip.currentValue.id); 
+      if (this.selectedTrip.userId == this.currentUser.id) {
+        this.isTripOfUser = true; 
+      }
+      else {
+        this.isTripOfUser = false; 
+      }
+    }
     /* 
     for (const propName in changes) {
       const chng = changes[propName];
@@ -52,6 +70,10 @@ export class ListPlaceComponent implements OnInit {
   }
 
 
+  onPlaceSelected(place: Place){
+    this.selectedPlace = place; 
+    this.data.changePlace(place); 
+  }
   
 
 }

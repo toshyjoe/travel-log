@@ -9,15 +9,20 @@
           name="title"
           required
           #title="ngModel"
+          minlength="3"
           > 
 
-          <span *ngIf="title.invalid&&title.touched"> Saisir un titre</span>
-
-          <input type="description" 
+        
+          <input type="text" 
           placeholder="Description"
           [(ngModel)]="tripRequest.description"
           name="description"
+          required
+          #description
+          minlength="5"
+          [disabled]="title.invalid"
           > 
+          <span *ngIf="description.invalid&&description.touched"> Saisir une description d'au moins 5 caractères</span>
 
 
           <button type="submit" 

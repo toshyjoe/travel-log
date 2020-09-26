@@ -1,11 +1,28 @@
 
 <br>
-<h2 > Places ({{places.length}})</h2>
+<div [hidden]="!selectedTrip"> 
+    <h3 > Places ({{places.length}})</h3>
 
-<mat-action-list>
-    <button mat-list-item *ngFor="let place of places" >
-        {{place.name}}
-        <mat-divider></mat-divider>
-    </button>
-</mat-action-list>
+    <mat-action-list>
+        <button mat-list-item *ngFor="let place of places" >
+            <app-place [place]="place" (selected)="onPlaceSelected($event)"> </app-place>
+            <mat-divider></mat-divider>
+        </button>
+    </mat-action-list>
 
+
+
+    <mat-accordion [hidden]="!isTripOfUser">
+      <mat-expansion-panel ShowToggle>
+        <mat-expansion-panel-header >
+          <mat-panel-title>
+            Ajouter une place
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        
+        <app-create-place> </app-create-place>
+
+      </mat-expansion-panel>
+  </mat-accordion>
+
+</div>

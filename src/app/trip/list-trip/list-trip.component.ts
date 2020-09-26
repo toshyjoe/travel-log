@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { TripService } from 'src/app/api/services/trip.service';
 import { Trip } from 'src/app/models/trip';
 import { AuthService } from 'src/app/security/auth.service';
 import { User } from 'src/app/models/user';
 import { reject } from 'lodash';
+import { SharedService } from 'src/app/api/services/shared.service';
 
 
 @Component({
@@ -17,9 +18,14 @@ export class ListTripComponent implements OnInit {
   trips: Trip[] = []; 
   user: User;   
   panelOpenState = false;
+  deletedTrip: Trip; 
+  currentTrip : Trip; 
+  newTrip : Trip; 
 
   
-  constructor(private tripService: TripService, private authService:AuthService) { 
+  constructor(private tripService: TripService, 
+              private authService:AuthService, 
+              private data : SharedService) { 
   
   }
 
@@ -30,7 +36,31 @@ export class ListTripComponent implements OnInit {
 
     // charger les Trips de l'utilisateur connecté
     this.loadAllTripsByUser(); 
+
+    this.data.currentTrip.subscribe(trip => this.currentTrip = trip); 
+
+    // raffraichir la liste lorsqu'un Trip est deleted. 
+    this.data.currentDeletedTrip.subscribe(
+      trip => {
+        this.deletedTrip = trip 
+        if(this.deletedTrip != null) {
+          this.loadAllTripsByUser(); 
+        }
+      }
+      ); 
+
+    // raffraichir la liste lorsqu'un Trip est créé. 
+    this.data.currentNewTrip.subscribe(
+      trip => {
+        this.newTrip = trip 
+        if(this.newTrip == null) {
+          console.log(" -- list-trip ngOnInit newTripxxx"); 
+          this.loadAllTripsByUser(); 
+        }
+      }
+    )
   }
+
 
 
 
@@ -63,17 +93,19 @@ export class ListTripComponent implements OnInit {
 
   onTripSelected(trip: Trip){
     this.selectedTrip = trip; 
+    this.data.changeTrip(trip); 
   }
 
 
   // use lodash -> supprime un élément de la collection 
   // deletedTrip = Output de trip.component
+  /* 
   onTripDeleted(deletedTrip: Trip): void {
     this.trips = reject(
       this.trips, 
       (trip) => trip.id === deletedTrip.id 
-    )
-  }
+    ) 
+  }*/
 
  // récupérer dans le composant un élément qui est
     // instancié dans le template 

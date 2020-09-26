@@ -1,0 +1,17 @@
+
+
+<div [hidden]="!currentTrip.id"> 
+    <h2> Détails du voyage </h2>
+    <p><strong>{{currentTrip.title}} </strong></p>
+    <p>{{currentTrip.description}}</p>
+    <small> Créé le {{ currentTrip.createdAt | date }}</small> <br>
+    <small> Modifié le {{ currentTrip.updatedAt | date }}</small> <br>
+<button  [hidden]="!isTripOfUser()" (click)="onDelete()"> Supprimer </button>
+<button  [hidden]="!isTripOfUser()"> Editer </button>
+<div [hidden]="!deleteError"> 
+    <span style="color:red"> Erreur lors de la suppression</span></div>
+</div>
+
+<br>
+<br>
+<br>

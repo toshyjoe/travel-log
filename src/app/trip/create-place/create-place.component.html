@@ -1,0 +1,44 @@
+
+  <div>
+    <h3>  {{selectedTrip.title}}</h3>
+  
+    <form #creatPlaceForm="ngForm" (submit)="onSubmit(creatPlaceForm)"> 
+      <input type="text" 
+        placeholder="Nom"
+        [(ngModel)]="placeRequest.name"
+        name="name"
+        required
+        #title="ngModel"
+        minlength="3"
+        > 
+
+        <span *ngIf="title.invalid&&title.dirty"> Saisir un nom</span>
+
+        <input type="text" 
+        placeholder="Description"
+        [(ngModel)]="placeRequest.description"
+        name="description"
+        required
+        #description
+        minlength="5"
+        > 
+
+        
+
+        <input type="text" 
+        placeholder="url de l'mage"
+        [(ngModel)]="placeRequest.pictureUrl"
+        name="pictureUrl"
+        #pictureUrl
+        [disabled]="description.invalid"
+        minlength="10"
+        > 
+
+
+        <button type="submit" 
+          [disabled]="creatPlaceForm.invalid"> 
+          Ajouter 
+        </button>
+    </form>
+
+</div>

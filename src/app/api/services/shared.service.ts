@@ -11,23 +11,29 @@ export class SharedService {
   private sharedTrip = new BehaviorSubject<Trip>(new Trip()); 
    currentTrip = this.sharedTrip.asObservable(); 
 
-   private sharedNewTrip = new BehaviorSubject<Trip>(new Trip()); 
+  private sharedNewTrip = new BehaviorSubject<Trip>(new Trip()); 
     currentNewTrip = this.sharedNewTrip.asObservable(); 
 
   private sharedDeletedTrip = new Subject<Trip>(); 
    currentDeletedTrip = this.sharedDeletedTrip.asObservable(); 
 
+  private shareUpdatedTrip = new BehaviorSubject<Trip>(new Trip()); 
+  currentUpdatedTrip = this.shareUpdatedTrip.asObservable(); 
+
   private sharedPlace = new BehaviorSubject<Place>(new Place()); 
    currentPlace = this.sharedPlace.asObservable(); 
 
-   private sharedNewPlace = new BehaviorSubject<Place>(new Place()); 
+  private sharedNewPlace = new BehaviorSubject<Place>(new Place()); 
     currentNewPlace = this.sharedNewPlace.asObservable(); 
 
-    private sharedDeletedPlace = new Subject<Place>(); 
+  private sharedDeletedPlace = new Subject<Place>(); 
      currentDeletedPlace = this.sharedDeletedPlace.asObservable(); 
    
 
   constructor() { }
+
+
+  // TRIPS 
 
   changeTrip(trip: Trip){
     // 'next()' used to send data 
@@ -41,6 +47,13 @@ export class SharedService {
   deletedTrip(trip: Trip){
     this.sharedDeletedTrip.next(trip); 
   }
+
+  updateTrip(trip: Trip) {
+    this.shareUpdatedTrip.next(trip); 
+  }
+
+
+  // PLACES 
 
   changePlace(place: Place){
     this.sharedPlace.next(place) 

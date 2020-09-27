@@ -1,6 +1,7 @@
 
 
 
+
 <mat-sidenav-container>
 
   <mat-sidenav #sidenav opened="true" mode="side">
@@ -13,13 +14,13 @@
   <mat-sidenav-content> 
 
     <button mat-raised-button color="accent" (click)="sidenav.toggle()"> Voyages </button>     
-    <!-- 
-    <router-outlet></router-outlet> 
-    <app-detail-trip [selectedTrip]="selectedTrip" (deleted)="onTripDeleted($event)"> </app-detail-trip>-->
+   
     <app-detail-trip  [selectedTrip]="selectedTrip"> </app-detail-trip>
 
 
     <app-detail-place> </app-detail-place>
+
+
 
   </mat-sidenav-content>
 

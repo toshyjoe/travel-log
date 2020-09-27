@@ -4,7 +4,7 @@
 
     <mat-action-list>
         <span *ngFor="let trip of trips" > 
-            <app-trip [trip]="trip" (selected)="onTripSelected($event)"></app-trip>
+          <app-trip [trip]="trip" (selected)="onTripSelected($event)"></app-trip>
         </span>
     </mat-action-list>
 

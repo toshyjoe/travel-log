@@ -6,23 +6,15 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ApiTokenInterceptorService } from "./api/api-token-interceptor.service";
 import { SecurityModule } from './security/security.module';
-import { DummyPageComponent } from './dummy-page/dummy-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { TripModule } from './trip/trip.module';
-import { MainPageComponent } from './main-page/main-page.component'; 
-import { MatListModule} from '@angular/material/list';
-import { MatExpansionModule} from '@angular/material/expansion';
 import { FormsModule} from '@angular/forms'; 
+import { MainPageModule } from './main-page/main-page.module'; 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    DummyPageComponent,
-    MainPageComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -30,12 +22,8 @@ import { FormsModule} from '@angular/forms';
     HttpClientModule, 
     SecurityModule, 
     BrowserAnimationsModule, 
-    MatButtonModule, 
-    MatSidenavModule, 
-    TripModule, 
-    MatListModule, 
-    MatExpansionModule, 
-    FormsModule
+    FormsModule, 
+    MainPageModule
   ],
   providers: [ 
     {

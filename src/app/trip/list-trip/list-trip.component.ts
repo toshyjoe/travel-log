@@ -21,6 +21,7 @@ export class ListTripComponent implements OnInit {
   deletedTrip: Trip; 
   currentTrip : Trip; 
   newTrip : Trip; 
+  updateTrip : Trip; 
 
   
   constructor(private tripService: TripService, 
@@ -54,7 +55,18 @@ export class ListTripComponent implements OnInit {
       trip => {
         this.newTrip = trip 
         if(this.newTrip == null) {
-          console.log(" -- list-trip ngOnInit newTripxxx"); 
+          this.loadAllTripsByUser(); 
+        }
+      }
+    )
+      
+
+    // raffraichir la liste lorsqu'un Trip est updaté. 
+    this.data.currentUpdatedTrip.subscribe(
+      trip => {
+        this.updateTrip = trip 
+        if(this.updateTrip == null) {
+          console.log(" -- list-trip ngOnInit update Tripxxx"); 
           this.loadAllTripsByUser(); 
         }
       }

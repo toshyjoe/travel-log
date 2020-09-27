@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/security/auth.service';
 import { TripRequest } from 'src/app/models/trip-request';
 import { TripResponse } from 'src/app/models/trip-response';
 import { catchError, map, tap } from 'rxjs/operators';
+import { SharedService } from './shared.service';
 
 
 const apiUrl = "https://masrad-2020-tl-anthony.herokuapp.com/api";
@@ -17,11 +18,13 @@ export class TripService {
 
   public selectedTrip : Trip; 
   userToken: String; 
+  currentTrip: Trip; 
   header: HttpHeaders; 
 
-  constructor(private http: HttpClient, private authService:AuthService) { 
+  constructor(private http: HttpClient, private authService:AuthService, private data : SharedService) { 
     
     this.authService.getToken().subscribe(token => this.userToken = token); 
+    this.data.currentTrip.subscribe(trip => this.currentTrip = trip); 
   }
 
   loadAllTrips(): Observable<Trip[]> {
@@ -46,7 +49,6 @@ export class TripService {
       'Content-Type':'application/json',
       'Authorization': `Bearer ${this.userToken}`
     })
-
     return this.http
      .post<TripResponse>(`${apiUrl}/trips`, tripRequest, { headers:this.header})
      .pipe(
@@ -55,6 +57,22 @@ export class TripService {
         return response.trip; 
        })
      );   
+  }
+
+  updateTrip(tripRequest: TripRequest): Observable<Trip> {
+
+    this.header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'Authorization': `Bearer ${this.userToken}`
+    })
+    return this.http
+     .patch<TripResponse>(`${apiUrl}/trips/${this.currentTrip.id}`, tripRequest, { headers:this.header})
+     .pipe(
+       map((response) => {
+        console.log(response)
+        return response.trip; 
+       })
+     );  
   }
 
 

@@ -6,10 +6,13 @@
     <p>{{currentTrip.description}}</p>
     <small> Créé le {{ currentTrip.createdAt | date }}</small> <br>
     <small> Modifié le {{ currentTrip.updatedAt | date }}</small> <br>
-<button  [hidden]="!isTripOfUser()" (click)="onDelete()"> Supprimer </button>
-<button  [hidden]="!isTripOfUser()"> Editer </button>
-<div [hidden]="!deleteError"> 
-    <span style="color:red"> Erreur lors de la suppression</span></div>
+    <button  [hidden]="!isTripOfUser()" (click)="onDelete()"> Supprimer </button>
+    <button  [hidden]="!isTripOfUser()" (click)="showUpdateForm()"> Editer </button>
+    <div [hidden]="!deleteError"> 
+        <span style="color:red"> Erreur lors de la suppression</span>
+    </div>
+
+    <app-update-trip [hidden]="!showHideUpdateForm"> </app-update-trip>
 </div>
 
 <br>

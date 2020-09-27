@@ -39,7 +39,7 @@ export class CreateTripComponent  {
 
  
   onSubmit(form: NgForm) {
-    console.log(" - inside submit "); 
+    
     if (form.valid) {
       this.createTripError = false;
 

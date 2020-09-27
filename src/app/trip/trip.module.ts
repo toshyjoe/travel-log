@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { DetailTripComponent } from './detail-trip/detail-trip.component';
 import { CreatePlaceComponent } from './create-place/create-place.component';
 import { DetailPlaceComponent } from './detail-place/detail-place.component';
+import { UpdateTripComponent } from './update-trip/update-trip.component';
+import { UpdatePlaceComponent } from './update-place/update-place.component';
 
 
 
@@ -28,7 +30,7 @@ import { DetailPlaceComponent } from './detail-place/detail-place.component';
     PlaceComponent, 
     DetailTripComponent, 
     CreatePlaceComponent, 
-    DetailPlaceComponent],
+    DetailPlaceComponent, UpdateTripComponent, UpdatePlaceComponent],
   imports: [
     CommonModule, 
     MatListModule, 

@@ -6,16 +6,14 @@ import { MainPageComponent } from './main-page/main-page.component';
 
 
 const routes: Routes = [
-  // Add this default route to redirect to dummy
+  // Add this default route to redirect to main
   { path: "", redirectTo: "main", pathMatch: "full" },
-  { path: "login", component: LoginPageComponent },
-  // Add the route to display the dummy page
-  {
-    path: "main",
-    component: MainPageComponent,
-    // Prevent access to this page to unauthenticated users
-    canActivate: [AuthGuard],
-  },
+  { path: "login", component: LoginPageComponent }, 
+  { path: "main", 
+        loadChildren: () =>
+        import('./main-page/main-page.module').then(m => m.MainPageModule), 
+        canActivate: [AuthGuard], 
+  }, 
 ];
 
 @NgModule({

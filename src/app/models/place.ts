@@ -9,7 +9,13 @@ export class Place {
     location:GeoJsonPoint; 
     tripId: string;
     tripHref: string;
-    pictureUrloptionnel: string;
+    pictureUrl: string;
     createdAt: string;
     updatedAt: string;
+
+    constructor(){
+        this.location = new GeoJsonPoint(); 
+    }
 }
+
+

@@ -8,6 +8,7 @@ import { Trip } from 'src/app/models/trip';
 })
 export class SharedService {
 
+  // trips
   private sharedTrip = new BehaviorSubject<Trip>(new Trip()); 
    currentTrip = this.sharedTrip.asObservable(); 
 
@@ -20,6 +21,7 @@ export class SharedService {
   private shareUpdatedTrip = new BehaviorSubject<Trip>(new Trip()); 
   currentUpdatedTrip = this.shareUpdatedTrip.asObservable(); 
 
+  // places 
   private sharedPlace = new BehaviorSubject<Place>(new Place()); 
    currentPlace = this.sharedPlace.asObservable(); 
 
@@ -28,6 +30,9 @@ export class SharedService {
 
   private sharedDeletedPlace = new Subject<Place>(); 
      currentDeletedPlace = this.sharedDeletedPlace.asObservable(); 
+
+  private shareUpdatedPlace = new BehaviorSubject<Place>(new Place()); 
+     currentUpdatedPlace = this.shareUpdatedPlace.asObservable(); 
    
 
   constructor() { }
@@ -65,5 +70,9 @@ export class SharedService {
 
   deletedPlace(place: Place){
     this.sharedDeletedPlace.next(place); 
+  }
+
+  updatePlace(place: Place) {
+    this.shareUpdatedPlace.next(place); 
   }
 }

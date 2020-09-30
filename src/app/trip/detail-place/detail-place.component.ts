@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PlaceService } from 'src/app/api/services/place.service';
 import { SharedService } from 'src/app/api/services/shared.service';
 import { TripService } from 'src/app/api/services/trip.service';
 import { Place } from 'src/app/models/place';
@@ -19,19 +20,34 @@ export class DetailPlaceComponent implements OnInit {
   currentUser : User; 
   currentTrip : Trip; 
   currentPlace : Place; 
+  showHideUpdateForm: Boolean; 
 
-  constructor(private TripService: TripService, 
+  constructor(private placeService: PlaceService, 
               private data : SharedService, 
               private authService: AuthService) { 
 
                 this.deleteError = false;  
                 this.deleteSuccess = false; 
-                this.authService.getUser().subscribe(user => this.currentUser = user); 
+                this.authService.getUser().subscribe(user => this.currentUser = user);  
+                this.showHideUpdateForm = false; 
   }
 
   ngOnInit(): void {
     this.data.currentTrip.subscribe(trip => this.currentTrip = trip); 
-    this.data.currentPlace.subscribe(place => this.currentPlace = place); 
+//    this.data.currentPlace.subscribe(place => this.currentPlace = place); 
+    this.data.currentPlace.subscribe(place => {
+      if (place != null) {
+        this.currentPlace = place; 
+      }
+      else{ 
+        this.currentPlace = new Place(); 
+      }
+    }); 
+  }
+
+  showUpdateForm(){
+    this.showHideUpdateForm = !this.showHideUpdateForm; 
+
   }
 
   isTripOfUser() : boolean{
@@ -45,6 +61,18 @@ export class DetailPlaceComponent implements OnInit {
 
   
   onDelete(){
-    return null; 
+    this.placeService.deletePlace(this.currentPlace.id)
+    .subscribe({
+      next: () => {
+        this.data.deletedPlace(this.currentPlace); 
+        this.currentPlace = new Place(); 
+      }, 
+      error: (err) => {
+        console.warn(`Place delete failed: ${err.message}`);
+        this.deleteError = true; 
+      }
+
+    })
+    
   }
 }

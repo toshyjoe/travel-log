@@ -1,0 +1,41 @@
+<p>create new account </p>
+<form #createUserForm="ngForm" (submit)="onSubmit(createUserForm)">
+    <div>
+      <label for="username">Username</label>
+      <input
+        type="text"
+        name="username"
+        id="createUsername"
+        #usernameField="ngModel"
+        required
+        [(ngModel)]="userRequest.name"
+        minlength="3"
+        maxlength="25"
+      />
+      <p *ngIf="usernameField.hasError('required') && usernameField.touched">
+        Username est obligatoire 
+      </p>
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="createPasswrod" 
+        #passwordField="ngModel"
+        required
+        [(ngModel)]="userRequest.password"
+        minlength="4"
+      />
+      <p *ngIf="passwordField.hasError('required') && passwordField.touched">
+        Password est obligatoire 
+      </p>
+    </div>
+  
+    <div>
+      <button type="submit" [disabled]="createUserForm.invalid">Créer </button>
+      <p *ngIf="createError">
+        Unable to log in. See the log for more information.
+      </p>
+    </div>
+  </form>

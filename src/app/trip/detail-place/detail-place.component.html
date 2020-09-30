@@ -5,10 +5,16 @@
     <h2> Détails de la place  </h2>
     <p><strong>{{currentPlace.name}} </strong></p>
     <p>{{currentPlace.description}}</p>
+    <p>Url image : {{currentPlace.pictureUrl}}</p>
+    <p>Longitude (-180 -> 180) : {{currentPlace.location.coordinates[0]}}</p>
+    <p>Latitude (-90 -> 90) : {{currentPlace.location.coordinates[1]}}</p>
     <small> Créé le {{ currentPlace.createdAt | date }}</small> <br>
     <small> Modifié le {{ currentPlace.updatedAt | date }}</small> <br>
-<button  [hidden]="!isTripOfUser()"  (click)="onDelete()"> Supprimer </button>
-<button  [hidden]="!isTripOfUser()" > Editer </button>
-<div [hidden]="!deleteError"> 
-    <span style="color:red"> Erreur lors de la suppression</span></div>
+    <button  [hidden]="!isTripOfUser()"  (click)="onDelete()"> Supprimer </button>
+    <button  [hidden]="!isTripOfUser()"  (click)="showUpdateForm()" > Editer </button>
+    <div [hidden]="!deleteError"> 
+        <span style="color:red"> Erreur lors de la suppression</span>
+    </div>
+
+    <app-update-place [hidden]="!showHideUpdateForm" > </app-update-place>
 </div>

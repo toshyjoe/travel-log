@@ -1,1 +1,67 @@
-<p>update-place works!</p>
+
+  <div [hidden]="!placeRequest.name">
+     
+    <h2> Update</h2>
+  
+    <form #updatePlaceForm="ngForm" (submit)="onSubmit(updatePlaceForm)"> 
+      <input type="text" 
+        placeholder="Nom"
+        [(ngModel)]="placeRequest.name"
+        name="name"
+        required
+        #name="ngModel"
+        minlength="3"
+        > 
+
+      
+        <br>
+        <input type="text" 
+        placeholder="Description"
+        [(ngModel)]="placeRequest.description"
+        name="description"
+        required
+        #description
+        minlength="5"
+        [disabled]="name.invalid"
+        > 
+        <span *ngIf="description.invalid&&description.touched"> Saisir une description d'au moins 5 caractères</span>
+
+
+      
+        <br>
+        <input type="text" 
+        placeholder="Url de l'image"
+        [(ngModel)]="placeRequest.pictureUrl"
+        name="pictureUrl"
+        #pictureUrl
+        minlength="5"
+        > 
+
+
+      
+        <br>
+    <label> Longitude (-180 -> 180)</label>
+        <input type="text" 
+        placeholder="x"
+        [(ngModel)]="placeRequest.location.coordinates[0]"
+        name="locationX"
+        #locationX
+        > 
+
+        <br>
+    <label> Latitude (-90 -> 90)</label>
+        <input type="text" 
+        placeholder="y"
+        [(ngModel)]="placeRequest.location.coordinates[1]"
+        name="locationY"
+        #locationX
+        > 
+
+        <br>
+        <button type="submit" 
+          [disabled]="updatePlaceForm.invalid"> 
+          Update  
+        </button>
+    </form>
+
+</div>

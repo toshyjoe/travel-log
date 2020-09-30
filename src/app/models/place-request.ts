@@ -12,6 +12,7 @@ export class PlaceRequest {
     constructor() {
         this.name = ''; 
         this.description = ''; 
+        this.pictureUrl = ''; 
         this.location = new GeoJsonPoint(); 
     }
 }

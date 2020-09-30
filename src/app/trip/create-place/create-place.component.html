@@ -3,6 +3,9 @@
     <h3>  {{selectedTrip.title}}</h3>
   
     <form #creatPlaceForm="ngForm" (submit)="onSubmit(creatPlaceForm)"> 
+
+      <br>
+  <label> Nom  </label>
       <input type="text" 
         placeholder="Nom"
         [(ngModel)]="placeRequest.name"
@@ -14,6 +17,9 @@
 
         <span *ngIf="title.invalid&&title.dirty"> Saisir un nom</span>
 
+        <br>
+        <br>
+    <label> Description </label>
         <input type="text" 
         placeholder="Description"
         [(ngModel)]="placeRequest.description"
@@ -24,14 +30,36 @@
         > 
 
         
-
+      
+        <br>
+        <br>
+    <label> Url de l'image </label>
         <input type="text" 
-        placeholder="url de l'mage"
+        placeholder="ex : https://www.google.ch/images"
         [(ngModel)]="placeRequest.pictureUrl"
         name="pictureUrl"
         #pictureUrl
-        [disabled]="description.invalid"
-        minlength="10"
+        > 
+        
+      
+        <br>
+        <br>
+    <label> Longitude (-180 -> 180)</label>
+        <input type="text" 
+        placeholder="x"
+        [(ngModel)]="placeRequest.location.coordinates[0]"
+        name="locationX"
+        #locationX
+        > 
+
+        <br>
+        <br>
+    <label> Latitude (-90 -> 90)</label>
+        <input type="text" 
+        placeholder="y"
+        [(ngModel)]="placeRequest.location.coordinates[1]"
+        name="locationY"
+        #locationX
         > 
 
 

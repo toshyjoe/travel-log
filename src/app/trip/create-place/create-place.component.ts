@@ -37,16 +37,14 @@ export class CreatePlaceComponent implements OnInit {
   onSubmit(form: NgForm) {
     if (form.valid) {
       this.createPlaceError = false;
-      this.placeRequest.tripId = '4994a7c2-aefa-43b9-a504-9960c25bdd4d'; 
+      //this.placeRequest.tripId = '4994a7c2-aefa-43b9-a504-9960c25bdd4d'; 
       this.placeRequest.tripId = this.selectedTrip.id; 
 
 
       this.placeService.createPlace(this.placeRequest).subscribe({
-        next: (newPlace) => {
-          console.log(" - inside submit place 4 "); 
-          //form.controls.title.markAsUntouched; 
+        next: () => {
           this.placeRequest = new PlaceRequest(); 
-          //form.reset; 
+          
           form.form.reset; 
           this.data.newPlace(null); 
 

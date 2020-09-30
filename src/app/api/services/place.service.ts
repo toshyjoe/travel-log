@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/security/auth.service';
 import { PlaceRequest } from 'src/app/models/place-request';
 import { PlaceResponse } from 'src/app/models/place-response';
 import { map } from 'rxjs/operators';
+import { SharedService } from './shared.service';
 
 
 const apiUrl = "https://masrad-2020-tl-anthony.herokuapp.com/api";
@@ -18,10 +19,12 @@ export class PlaceService {
   public selectedPlace : Place; 
   userToken: String; 
   header:    HttpHeaders; 
+  currentPlace : Place; 
 
-  constructor(private http: HttpClient, private authService:AuthService) {
+  constructor(private http: HttpClient, private authService:AuthService, private data : SharedService) {
     
     this.authService.getToken().subscribe(token => this.userToken = token);
+    this.data.currentPlace.subscribe(place => this.currentPlace = place); 
 
    }
 
@@ -50,6 +53,22 @@ export class PlaceService {
         return response.place; 
        })
      );   
+  }
+
+  updatePlace(placeRequest: PlaceRequest): Observable<Place> {
+
+    this.header = new HttpHeaders({
+      'Content-Type':'application/json',
+      'Authorization': `Bearer ${this.userToken}`
+    })
+    return this.http
+     .patch<PlaceResponse>(`${apiUrl}/places/${this.currentPlace.id}`, placeRequest, { headers:this.header})
+     .pipe(
+       map((response) => {
+        console.log(response)
+        return response.place; 
+       })
+     );  
   }
 
 

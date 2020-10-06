@@ -1,8 +1,12 @@
-<p>create new account </p>
+<h1> Inscription </h1>
 <form #createUserForm="ngForm" (submit)="onSubmit(createUserForm)">
     <div>
-      <label for="username">Username</label>
-      <input
+      <mat-form-field 
+          floatLabel="never" 
+          appearance="fill"
+          color="accent">
+      <mat-label for="username">Username</mat-label>
+      <input matInput
         type="text"
         name="username"
         id="createUsername"
@@ -12,13 +16,21 @@
         minlength="3"
         maxlength="25"
       />
+    </mat-form-field>
+    <br>
       <p *ngIf="usernameField.hasError('required') && usernameField.touched">
         Username est obligatoire 
       </p>
     </div>
+
+
     <div>
-      <label for="password">Password</label>
-      <input
+      <mat-form-field 
+          floatLabel="never"
+          appearance="fill"
+          color="accent">
+      <mat-label for="password">Password</mat-label>
+      <input matInput
         type="password"
         name="password"
         id="createPasswrod" 
@@ -27,13 +39,19 @@
         [(ngModel)]="userRequest.password"
         minlength="4"
       />
+    </mat-form-field>
+
       <p *ngIf="passwordField.hasError('required') && passwordField.touched">
         Password est obligatoire 
       </p>
     </div>
   
     <div>
-      <button type="submit" [disabled]="createUserForm.invalid">Créer </button>
+      <button 
+        mat-flat-button 
+        color="accent"
+        type="submit" 
+        [disabled]="createUserForm.invalid">Créer </button>
       <p *ngIf="createError">
         Unable to log in. See the log for more information.
       </p>

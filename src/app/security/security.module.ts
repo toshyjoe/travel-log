@@ -4,16 +4,26 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { FormsModule } from '@angular/forms';
 import { LogoutButtonComponent } from './logout-button/logout-button.component';
 import { CreateAccountComponent } from './create-account/create-account.component' ;
-
+import { MatTabsModule } from '@angular/material/tabs'; 
+import { MatInputModule } from '@angular/material/input'; 
+import { MatButtonModule } from '@angular/material/button'; 
 
 
   @NgModule({
-    declarations: [LoginPageComponent, LogoutButtonComponent, CreateAccountComponent],
+    declarations: [
+      LoginPageComponent, 
+      LogoutButtonComponent, 
+      CreateAccountComponent],
     imports: [
-      CommonModule, FormsModule
+      CommonModule, 
+      FormsModule, 
+      MatTabsModule, 
+      MatInputModule, 
+      MatButtonModule
     ], 
     exports: [
-    LoginPageComponent, LogoutButtonComponent
+    LoginPageComponent, 
+    LogoutButtonComponent
   ]
 })
 export class SecurityModule { }

@@ -1,42 +1,73 @@
-<form #loginForm="ngForm" (submit)="onSubmit(loginForm)">
-  <div>
-    <label for="username">Username</label>
-    <input
-      type="text"
-      name="username"
-      id="username"
-      #usernameField="ngModel"
-      required
-      [(ngModel)]="authRequest.username"
-    />
-    <p *ngIf="usernameField.hasError('required') && usernameField.touched">
-      Username is required
-    </p>
-  </div>
-  <div>
-    <label for="password">Password</label>
-    <input
-      type="password"
-      name="password"
-      id="passwrod" 
-      #passwordField="ngModel"
-      required
-      [(ngModel)]="authRequest.password"
-    />
-    <p *ngIf="passwordField.hasError('required') && passwordField.touched">
-      Password is required
-    </p>
-  </div>
+<div class="mainDiv"> 
+  <mat-tab-group>
 
-  <div>
-    <button type="submit" [disabled]="loginForm.invalid">Log in</button>
-    <p *ngIf="loginError">
-      Unable to log in. See the log for more information.
-    </p>
-  </div>
-</form>
+    <mat-tab label="Connexion"> 
+      <h1>Connexion </h1>
 
-<div> 
+        <form #loginForm="ngForm" (submit)="onSubmit(loginForm)">
+            <div>
+              <mat-form-field 
+                  floatLabel="never" 
+                  appearance="fill"
+                  color="accent">
+                <mat-label for="username">Username</mat-label>
+                <input matInput
+                  type="text"
+                  name="username"
+                  id="username"
+                  #usernameField="ngModel"
+                  required
+                  [(ngModel)]="authRequest.username"
+                />
+            </mat-form-field>
+              <br>
+              <p *ngIf="usernameField.hasError('required') && usernameField.touched">
+                Username requis. 
+              </p>
+            </div>
 
-  <app-create-account></app-create-account>
+
+            <div>
+              <mat-form-field 
+                  floatLabel="never"
+                  appearance="fill"
+                  color="accent">
+                <mat-label for="password">Password</mat-label>
+                <input matInput
+                  type="password"
+                  name="password"
+                  id="passwrod" 
+                  #passwordField="ngModel"
+                  required
+                  [(ngModel)]="authRequest.password"
+                />
+              </mat-form-field>
+
+              <p *ngIf="passwordField.hasError('required') && passwordField.touched">
+                Mot de passe requis. 
+              </p>
+            </div>
+
+            <div>
+              <button 
+                mat-flat-button 
+                color="accent"
+                type="submit" 
+                [disabled]="loginForm.invalid">Log in</button>
+
+              <p *ngIf="loginError">
+                Erreur lors de la connexion. 
+              </p>
+            </div>
+        </form>
+
+    </mat-tab>
+
+
+    <mat-tab label="Inscription"> 
+      <app-create-account></app-create-account>
+      
+    </mat-tab>
+  </mat-tab-group>
 </div>
+

@@ -27,11 +27,12 @@ export class UpdatePlaceComponent implements OnInit {
     this.placeRequest = new PlaceRequest(); }
 
   ngOnInit(): void {
-    this.data.currentPlace.subscribe(place => this.placeRequest.name = place.name); 
-    this.data.currentPlace.subscribe(place => this.placeRequest.description = place.description); 
-    this.data.currentPlace.subscribe(place => this.placeRequest.pictureUrl = place.pictureUrl); 
-    this.data.currentPlace.subscribe(place => this.placeRequest.location.coordinates[0] = place.location.coordinates[0]); 
-    this.data.currentPlace.subscribe(place => this.placeRequest.location.coordinates[1] = place.location.coordinates[1]); 
+      this.data.currentPlace.subscribe(place => this.placeRequest.name = place.name); 
+      this.data.currentPlace.subscribe(place => this.placeRequest.description = place.description); 
+      this.data.currentPlace.subscribe(place => this.placeRequest.pictureUrl = place.pictureUrl); 
+      this.data.currentPlace.subscribe(place => this.placeRequest.location.coordinates[0] = place.location.coordinates[0]); 
+      this.data.currentPlace.subscribe(place => this.placeRequest.location.coordinates[1] = place.location.coordinates[1]); 
+  
   }
 
 

@@ -1,18 +1,21 @@
 
 
-<p> Maps : places  : {{ places.length }} </p>
+
 <agm-map  
     [latitude]="latitude" [longitude]="longitude" 
     [zoom]="10"
     (mapClick)="onChoseLocation($event)">
 
-<agm-marker 
-    *ngFor="let marker of places" 
-    [longitude]="marker.location.coordinates[0]"
-    [latitude]="marker.location.coordinates[1]" 
-    [label]="monLabel"
-    >
-</agm-marker>
+    <agm-marker 
+        *ngFor="let marker of places; index as i" 
+        
+        [longitude]="marker.location.coordinates[0]"
+        [latitude]="marker.location.coordinates[1]" 
+        [label]="marker.name"
+        [title]="marker.id"
+        (markerClick)="onMarkerClick(i)"
+        >
+    </agm-marker>
 
 
 </agm-map>

@@ -13,19 +13,19 @@
 
   <mat-sidenav-content> 
 
-    <button mat-raised-button color="accent" (click)="sidenav.toggle()"> Voyages </button>     
+    <button mat-raised-button color="accent" (click)="sidenav.toggle()"> Plein écran </button>     
 
     <app-logout-button></app-logout-button>
    
     Logged as : {{ currentUser.name }}
 
     <div>
-      Maps : 
       <app-display-map> </app-display-map>
     </div>
 
     <app-detail-trip  > </app-detail-trip>
 
+    <br>
 
     <app-detail-place> </app-detail-place>
 

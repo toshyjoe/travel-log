@@ -15,10 +15,12 @@ export class DisplayMapComponent implements OnInit {
 
   latitude = 46.997613; 
   longitude = 6.938573; 
+  currentIndex : number; 
   
   currentTrip: Trip; 
   currentUser : User; 
   places: Place[] = []; 
+  monLabel = "Mon label ici"; 
 
   constructor(
     private authService: AuthService, 
@@ -32,7 +34,7 @@ export class DisplayMapComponent implements OnInit {
 
     // charger la liste des places lorsqu'on sélectionne un trip
     this.data.currentTrip.subscribe(trip => 
-      this.loadPlacesByTrip(trip.id)
+      this.loadPlacesByTrip(trip.id) 
       ); 
     ; 
   }
@@ -55,4 +57,17 @@ export class DisplayMapComponent implements OnInit {
       )}
     )
   }
+
+  
+  // Afficher les détails de Place lorsqu'on clique sur le marker
+  onMarkerClick(selectedPlaceIndex){
+
+    this.data.changePlace(this.places[selectedPlaceIndex]); 
+  }
+
+
+
+
+
+
 }

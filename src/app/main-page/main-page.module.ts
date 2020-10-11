@@ -8,6 +8,8 @@ import { MatExpansionModule} from '@angular/material/expansion';
 import { MainPageRoutingModule } from './main-page-routing.module'; 
 import { MainPageComponent } from './main-page.component'; 
 import { SecurityModule } from '../security/security.module'; 
+import { MapsModule  } from '../maps/maps.module'; 
+
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import { SecurityModule } from '../security/security.module';
     TripModule, 
     MatExpansionModule, 
     MainPageRoutingModule,
-    SecurityModule
+    SecurityModule, 
+    MapsModule
   ], 
   exports: [
     MainPageComponent

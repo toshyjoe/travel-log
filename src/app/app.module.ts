@@ -8,7 +8,7 @@ import { ApiTokenInterceptorService } from "./api/api-token-interceptor.service"
 import { SecurityModule } from './security/security.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { FormsModule} from '@angular/forms'; 
-import { MainPageModule } from './main-page/main-page.module'; 
+import { MainPageModule } from './main-page/main-page.module';
 
 
 

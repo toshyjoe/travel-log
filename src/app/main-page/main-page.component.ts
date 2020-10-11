@@ -4,6 +4,7 @@ import { Trip } from '../models/trip';
 import { User } from '../models/user';
 import { AuthService } from '../security/auth.service';
 
+
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',

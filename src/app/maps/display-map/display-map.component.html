@@ -1,4 +1,19 @@
-<p>display-map works!</p>
 
 
-<agm-map [latitude]="latitude" [longitude]="longitude"></agm-map>
+<p> Maps : places  : {{ places.length }} </p>
+<agm-map  
+    [latitude]="latitude" [longitude]="longitude" 
+    [zoom]="10"
+    (mapClick)="onChoseLocation($event)">
+
+<agm-marker 
+    *ngFor="let marker of places" 
+    [longitude]="marker.location.coordinates[0]"
+    [latitude]="marker.location.coordinates[1]" 
+    [label]="monLabel"
+    >
+</agm-marker>
+
+
+</agm-map>
+

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DisplayMapComponent } from './display-map/display-map.component';
-import { AgmCoreModule } from '@agm/core'; 
+import { AgmCoreModule} from '@agm/core'; 
 
 
 
@@ -11,8 +11,7 @@ import { AgmCoreModule } from '@agm/core';
     CommonModule, 
     AgmCoreModule.forRoot({
       apiKey:'AIzaSyCFdUsgLSKvBr1Q8iTBy80Tryu7Hk91kjk'
-    }
-    )
+    })
   ], 
   exports: [
     DisplayMapComponent

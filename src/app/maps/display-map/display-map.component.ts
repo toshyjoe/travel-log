@@ -5,6 +5,7 @@ import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/security/auth.service';
 import { PlaceService } from 'src/app/api/services/place.service';
 import { SharedService } from 'src/app/api/services/shared.service';
+import { GeolocationService } from 'src/app/api/services/geolocation.service';
 
 @Component({
   selector: 'app-display-map',
@@ -25,9 +26,23 @@ export class DisplayMapComponent implements OnInit {
   constructor(
     private authService: AuthService, 
     private data : SharedService, 
-    private placeService: PlaceService) {
-    this.authService.getUser().subscribe(user => this.currentUser = user);  
+    private placeService: PlaceService, 
+    private geolocation: GeolocationService) {
+
+      this.authService.getUser().subscribe(user => this.currentUser = user);  
+      this.geolocation
+        .getCurrentPosition()
+        .then((position) => {
+          this.longitude = position.coords.longitude; 
+          this.latitude = position.coords.latitude; 
+          console.log('User located!', position ); 
+        })
+        .catch((error) => {
+          console.warn('Failed to locate user because ', error); 
+        }); 
   }
+
+
 
   ngOnInit(): void {
     this.data.currentTrip.subscribe(trip => this.currentTrip = trip); 

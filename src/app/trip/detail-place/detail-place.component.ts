@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlaceService } from 'src/app/api/services/place.service';
 import { SharedService } from 'src/app/api/services/shared.service';
-import { TripService } from 'src/app/api/services/trip.service';
 import { Place } from 'src/app/models/place';
 import { Trip } from 'src/app/models/trip';
 import { User } from 'src/app/models/user';

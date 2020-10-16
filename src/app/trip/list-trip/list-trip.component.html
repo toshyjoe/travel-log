@@ -1,6 +1,6 @@
 <h2>Voyages</h2>
-<button (click)="loadAllTripsByUser()"> Mes voyages </button>
-<button (click)="loadAllTrips()"> Tous  </button>
+<button  mat-stroked-button color="accent"  (click)="loadAllTripsByUser()"> Mes voyages </button>
+<button  mat-stroked-button color="accent"  (click)="loadAllTrips()"> Tous  </button>
 
     <mat-action-list>
         <span *ngFor="let trip of trips" > 
@@ -24,5 +24,8 @@
 
   <br>
 
-<app-list-place [selectedTrip]="selectedTrip"  ></app-list-place>
+  <!-- 
+<app-list-place [selectedTrip]="selectedTrip"  ></app-list-place>-->
+
+<app-filter-places [selectedTrip]="selectedTrip"></app-filter-places>
 

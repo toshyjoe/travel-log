@@ -14,6 +14,7 @@ export class MainPageComponent implements OnInit {
 
   @Input() selectedTrip : Trip; 
   currentUser : User; 
+  
 
   constructor(private authService: AuthService) { 
 

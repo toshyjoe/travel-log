@@ -1,4 +1,4 @@
-import { Component,  OnInit } from '@angular/core';
+import { Component,  OnInit, SimpleChanges } from '@angular/core';
 import { Place } from 'src/app/models/place';
 import { Trip } from 'src/app/models/trip';
 import { User } from 'src/app/models/user';
@@ -19,6 +19,7 @@ export class DisplayMapComponent implements OnInit {
   currentIndex : number; 
   
   currentTrip: Trip; 
+  currentPlace: Place; 
   currentUser : User; 
   places: Place[] = []; 
   monLabel = "Mon label ici"; 
@@ -46,12 +47,22 @@ export class DisplayMapComponent implements OnInit {
 
   ngOnInit(): void {
     this.data.currentTrip.subscribe(trip => this.currentTrip = trip); 
+    this.data.currentPlace.subscribe(place => this.currentPlace = place); 
 
     // charger la liste des places lorsqu'on sélectionne un trip
     this.data.currentTrip.subscribe(trip => 
       this.loadPlacesByTrip(trip.id) 
       ); 
     ; 
+  }
+
+  ngOnChanges(changes: SimpleChanges){
+    if (this.currentPlace != null) {
+      this.latitude = changes.currentPlace.currentValue.location.coordinates[1]; 
+      this.longitude = changes.currentPlace.currentValue.location.coordinates[0]; 
+      //console.log(" Changement du select du place ! "); 
+      
+    }
   }
 
   onChoseLocation(event){
@@ -68,8 +79,11 @@ export class DisplayMapComponent implements OnInit {
     .subscribe(
       places => {places.forEach(
         place => {this.places.push(place)
-        }
-      )}
+        },
+      ), 
+      this.latitude = places[0].location.coordinates[1], 
+      this.longitude = places[0].location.coordinates[0] 
+    }
     )
   }
 

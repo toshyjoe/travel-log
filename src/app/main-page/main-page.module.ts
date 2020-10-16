@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatListModule} from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatGridListModule } from '@angular/material/grid-list'; 
 import { TripModule } from '../trip/trip.module';
 import { MatExpansionModule} from '@angular/material/expansion';
 import { MainPageRoutingModule } from './main-page-routing.module'; 
@@ -23,6 +24,7 @@ import { MapsModule  } from '../maps/maps.module';
     MatSidenavModule, 
     TripModule, 
     MatExpansionModule, 
+    MatGridListModule,
     MainPageRoutingModule,
     SecurityModule, 
     MapsModule

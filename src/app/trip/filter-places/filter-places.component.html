@@ -1,0 +1,33 @@
+<div [hidden]="!isTripOfUser"> 
+  <h2> Places </h2>
+  <p> Etapes du voyage : <br>  <strong>{{ selectedTrip.title }}</strong> </p>
+
+  <mat-form-field>
+      <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filtrer les lieux visités">
+  </mat-form-field>
+
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+    <!-- Position Column -->
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.name}}  <br> </mat-cell>
+      </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row (click)="selectRow(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-accordion>
+    <mat-expansion-panel ShowToggle>
+      <mat-expansion-panel-header >
+        <mat-panel-title>
+          Ajouter une place
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      
+      <app-create-place> </app-create-place>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

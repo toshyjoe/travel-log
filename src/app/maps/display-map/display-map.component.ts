@@ -1,4 +1,4 @@
-import { Component,  OnInit, SimpleChanges } from '@angular/core';
+import { Component,  Input,  OnInit, SimpleChanges } from '@angular/core';
 import { Place } from 'src/app/models/place';
 import { Trip } from 'src/app/models/trip';
 import { User } from 'src/app/models/user';
@@ -14,12 +14,12 @@ import { GeolocationService } from 'src/app/api/services/geolocation.service';
 })
 export class DisplayMapComponent implements OnInit {
 
-  latitude = 46.997613; 
+  latitude = 46.997613; // defaut si non géolocalisé
   longitude = 6.938573; 
   currentIndex : number; 
   
   currentTrip: Trip; 
-  currentPlace: Place; 
+  @Input() currentPlace: Place; 
   currentUser : User; 
   places: Place[] = []; 
   monLabel = "Mon label ici"; 
@@ -36,7 +36,6 @@ export class DisplayMapComponent implements OnInit {
         .then((position) => {
           this.longitude = position.coords.longitude; 
           this.latitude = position.coords.latitude; 
-          console.log('User located!', position ); 
         })
         .catch((error) => {
           console.warn('Failed to locate user because ', error); 
@@ -47,22 +46,19 @@ export class DisplayMapComponent implements OnInit {
 
   ngOnInit(): void {
     this.data.currentTrip.subscribe(trip => this.currentTrip = trip); 
-    this.data.currentPlace.subscribe(place => this.currentPlace = place); 
+    this.data.currentPlace.subscribe(place => this.currentPlace = place);     
 
     // charger la liste des places lorsqu'on sélectionne un trip
     this.data.currentTrip.subscribe(trip => 
       this.loadPlacesByTrip(trip.id) 
       ); 
-    ; 
-  }
-
-  ngOnChanges(changes: SimpleChanges){
-    if (this.currentPlace != null) {
-      this.latitude = changes.currentPlace.currentValue.location.coordinates[1]; 
-      this.longitude = changes.currentPlace.currentValue.location.coordinates[0]; 
-      //console.log(" Changement du select du place ! "); 
-      
-    }
+    
+      this.data.currentPlace.subscribe(place => { 
+        this.latitude = place.location.coordinates[1], 
+        this.longitude = place.location.coordinates[0] 
+      }
+        )
+    
   }
 
   onChoseLocation(event){

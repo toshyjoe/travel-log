@@ -22,9 +22,8 @@ export class FilterPlacesComponent implements OnInit {
 
   @Input() selectedTrip: Trip; 
   currentUser : User; 
-  displayedColumns: string[] = ['name']; 
+  displayedColumns: string[] = ['name']; // ajouter les colonnes de Place à afficher
   dataSource : MatTableDataSource<any>; 
-  placeNames: String[]; 
   isTripOfUser : boolean; 
   
 
@@ -40,7 +39,6 @@ export class FilterPlacesComponent implements OnInit {
     if (this.selectedTrip === undefined){
       this.selectedTrip = new Trip(); 
     }
-    this.placeNames = []; 
     this.isTripOfUser = false; 
   }
 
@@ -48,8 +46,10 @@ export class FilterPlacesComponent implements OnInit {
   // Recharge la liste des places lorsqu'un autre Trip est sélectionné 
   //   -> lorsque l'Input selectedTrip change 
   ngOnChanges(changes: SimpleChanges) {
+    var idNewTrip = changes.selectedTrip.currentValue.id; 
+
     if (this.selectedTrip != null) {
-      this.loadPlacesByTrip(changes.selectedTrip.currentValue.id);
+      this.loadPlacesByTrip(idNewTrip);
       if (this.selectedTrip.userId == this.currentUser.id) {
         this.isTripOfUser = true; 
       }
@@ -83,13 +83,13 @@ export class FilterPlacesComponent implements OnInit {
   }
 
 
+  // initialise la liste des Place selon Trip sélectionné
   loadPlacesByTrip(tripId : String ) {
 
     this.dataSource = null; 
     this.placeService.loadAllPlacesByTrip(tripId)
     .subscribe(
       places => {
-        this.placeNames = []; 
         this.dataSource = new MatTableDataSource(places as Place[])
       }
     )

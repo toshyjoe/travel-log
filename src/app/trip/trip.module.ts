@@ -10,6 +10,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button'; 
 import { MatTableModule  } from '@angular/material/table'; 
 import { MatInputModule } from '@angular/material/input'; 
+import { MatIconModule } from '@angular/material/icon'; 
+import { MatGridListModule } from '@angular/material/grid-list'; 
+
 
 import { TripComponent } from './trip/trip.component';
 import { ListPlaceComponent } from './list-place/list-place.component';
@@ -44,6 +47,8 @@ import { FilterPlacesComponent } from './filter-places/filter-places.component';
     MatButtonModule, 
     MatTableModule,  
     MatInputModule, 
+    MatIconModule,
+    MatGridListModule,
     FormsModule
   ], 
   exports: [
@@ -51,7 +56,8 @@ import { FilterPlacesComponent } from './filter-places/filter-places.component';
     ListTripComponent, 
     ListPlaceComponent, 
     DetailTripComponent,
-    DetailPlaceComponent
+    DetailPlaceComponent, 
+    SearchTripComponent
   ], 
 })
 export class TripModule { }

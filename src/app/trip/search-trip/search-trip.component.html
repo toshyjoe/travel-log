@@ -1,1 +1,71 @@
-<p>search-trip works!</p>
+
+<div class="example-action-buttons">
+    <!-- 
+    <button mat-button (click)="accordion.openAll()">Expand All</button>
+    <button mat-button (click)="accordion.closeAll()">Collapse All</button>-->
+  </div>
+  <mat-accordion class="example-headers-align" >
+    <mat-expansion-panel >
+      <mat-expansion-panel-header>
+        <mat-panel-description>
+          Chercher un voyage
+          <mat-icon>search</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  
+            
+      <mat-grid-list cols="2">
+          
+        <mat-grid-tile>
+            <form  #searchTripForm="ngForm" (submit)="onSubmit(searchTripForm)">
+                
+                <h2> Recherche </h2>
+                <mat-form-field>
+                    <mat-label>Nom exact : </mat-label>
+                    <input 
+                        matInput 
+                        [(ngModel)]="searchTripRequest.titleoptionnel"
+                        name=title>
+                </mat-form-field>
+
+                
+                <br>
+                <mat-form-field>
+                    <mat-label>Contient les mots : </mat-label>
+                    <input 
+                        matInput 
+                        [(ngModel)]="searchTripRequest.searchoptionnel"
+                        name=search>
+                </mat-form-field>
+                <br>
+        
+                <button mat-raised-button type="submit" 
+                    [disabled]="searchTripForm.invalid"> 
+                    Lancer la recherche 
+                </button>
+                </form>
+        </mat-grid-tile>
+  
+
+
+
+
+        <mat-grid-tile>
+            <mat-list role="list">
+                <h2> Résultats de recherche : </h2>
+                <mat-list-item role="listitem" *ngFor="let trip of trips">
+                    <div mat-line>
+                        <button mat-button (click)="onSelectedTrip(trip)">  
+                            {{trip.title}}  
+                        </button>  
+                    </div>
+                    
+                </mat-list-item>
+              </mat-list>
+
+        </mat-grid-tile>
+    </mat-grid-list>
+
+    </mat-expansion-panel>
+    
+  </mat-accordion>

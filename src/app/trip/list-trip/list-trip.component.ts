@@ -22,6 +22,7 @@ export class ListTripComponent implements OnInit {
   currentTrip : Trip; 
   newTrip : Trip; 
   updateTrip : Trip; 
+  isPanelOpen : boolean = false; 
 
   
   constructor(private tripService: TripService, 
@@ -38,7 +39,7 @@ export class ListTripComponent implements OnInit {
     // charger les Trips de l'utilisateur connecté
     this.loadAllTripsByUser(); 
 
-    this.data.currentTrip.subscribe(trip => this.currentTrip = trip); 
+    this.data.currentTrip.subscribe(trip => this.selectedTrip = trip); 
 
     // raffraichir la liste lorsqu'un Trip est deleted. 
     this.data.currentDeletedTrip.subscribe(
@@ -53,7 +54,8 @@ export class ListTripComponent implements OnInit {
     // raffraichir la liste lorsqu'un Trip est créé. 
     this.data.currentNewTrip.subscribe(
       trip => {
-        this.newTrip = trip 
+        this.newTrip = trip, 
+        this.closeExpansionPanel(); 
         if(this.newTrip == null) {
           this.loadAllTripsByUser(); 
         }
@@ -66,7 +68,6 @@ export class ListTripComponent implements OnInit {
       trip => {
         this.updateTrip = trip 
         if(this.updateTrip == null) {
-          console.log(" -- list-trip ngOnInit update Tripxxx"); 
           this.loadAllTripsByUser(); 
         }
       }
@@ -74,6 +75,9 @@ export class ListTripComponent implements OnInit {
   }
 
 
+  closeExpansionPanel(){
+    this.isPanelOpen = false; 
+  }
 
 
   loadAllTripsByUser(){

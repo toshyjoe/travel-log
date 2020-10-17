@@ -1,33 +1,41 @@
 
 
 
-
 <mat-sidenav-container>
 
-  <mat-sidenav #sidenav opened="true" mode="side">
-     
-    <app-list-trip></app-list-trip>
-    
+
+  <!-- Panneau de gauche (Trips + Places) -->
+  <mat-sidenav #sidenav opened="true" mode="side">     
+    <app-list-trip></app-list-trip>    
   </mat-sidenav>
 
 
+  <!-- Panneau de droite (logout - search - maps - details)-->
   <mat-sidenav-content> 
+    <button mat-raised-button color="accent" (click)="sidenav.toggle()"> Pleine écran </button>     
+    <app-logout-button></app-logout-button>
+      Hello {{ currentUser.name }} !
+      
+ 
+    <!-- Search -->
+    <div>
+      <app-search-trip> </app-search-trip>
+    </div>
+
+    <!-- Google maps -->
     <div>
       <app-display-map> </app-display-map>
     </div>
 
-
-    <app-detail-trip  > </app-detail-trip>
-
+    <!-- selected trip details -->
+    <app-detail-trip> </app-detail-trip>
     <br>
 
+    <!-- selected place details -->
     <app-detail-place> </app-detail-place>
 
-
-
-
-
   </mat-sidenav-content>
+
 
 </mat-sidenav-container>
 

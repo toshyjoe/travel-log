@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/security/auth.service';
 import { PlaceService } from 'src/app/api/services/place.service';
 import { SharedService } from 'src/app/api/services/shared.service';
 import { GeolocationService } from 'src/app/api/services/geolocation.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-display-map',
@@ -22,7 +23,6 @@ export class DisplayMapComponent implements OnInit {
   @Input() currentPlace: Place; 
   currentUser : User; 
   places: Place[] = []; 
-  monLabel = "Mon label ici"; 
 
   constructor(
     private authService: AuthService, 
@@ -53,9 +53,11 @@ export class DisplayMapComponent implements OnInit {
       this.loadPlacesByTrip(trip.id) 
       ); 
     
-      this.data.currentPlace.subscribe(place => { 
+    this.data.currentPlace.subscribe(place => { 
+      if (place != undefined) {
         this.latitude = place.location.coordinates[1], 
         this.longitude = place.location.coordinates[0] 
+      }
       }
         )
     
@@ -73,14 +75,19 @@ export class DisplayMapComponent implements OnInit {
     this.places = []; 
     this.placeService.loadAllPlacesByTrip(tripId)
     .subscribe(
-      places => {places.forEach(
-        place => {this.places.push(place)
-        },
-      ), 
-      this.latitude = places[0].location.coordinates[1], 
-      this.longitude = places[0].location.coordinates[0] 
-    }
+      places => {
+        places.forEach
+        (
+          place => {this.places.push(place)},
+        )        
+          
+        if(places.length > 0) {
+          this.latitude = places[0].location.coordinates[1] ;
+          this.longitude = places[0].location.coordinates[0]; 
+        }
+      }  
     )
+    
   }
 
   

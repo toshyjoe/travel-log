@@ -41,7 +41,11 @@ export class TripService {
   }
 
 
-
+  // search by title 
+  searchTrip(params : String): Observable<Trip[]> {
+    console.log('trip.service request ' + `${apiUrl}/trips?${params}`); 
+    return this.http.get<Trip[]>(`${apiUrl}/trips${params}`)
+  }
 
 
   createTrip(tripRequest: TripRequest): Observable<Trip> {

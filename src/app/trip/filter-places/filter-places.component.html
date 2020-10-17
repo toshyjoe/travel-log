@@ -1,4 +1,5 @@
-<div [hidden]="!isTripOfUser"> 
+
+<div [hidden]="selectedTrip.id == null"> 
   <h2> Places </h2>
   <p> Etapes du voyage : <br>  <strong>{{ selectedTrip.title }}</strong> </p>
 
@@ -18,7 +19,7 @@
     <mat-row (click)="selectRow(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 
-  <mat-accordion>
+  <mat-accordion [hidden]="!isTripOfUser">
     <mat-expansion-panel ShowToggle>
       <mat-expansion-panel-header >
         <mat-panel-title>

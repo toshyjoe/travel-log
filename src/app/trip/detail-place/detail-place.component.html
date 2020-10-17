@@ -1,4 +1,4 @@
-<div [hidden]="!currentPlace.id"> 
+<div [hidden]="!currentPlace.id || (currentTrip.id != currentPlace.tripId)"> 
     <mat-card>
 
         <mat-card-title>
@@ -9,10 +9,9 @@
             <p>{{currentPlace.description}}</p>
             <p>
                 <img src="{{currentPlace.pictureUrl}} " 
-                   alt="Picture of {{currentPlace.name}}" width="500" height="600">
+                   alt="Picture of {{currentPlace.name}}" width="300">
             </p>
-            <p>Longitude (-180 -> 180) : {{currentPlace.location.coordinates[0]}}</p>
-            <p>Latitude (-90 -> 90) : {{currentPlace.location.coordinates[1]}}</p>
+            <p>Coordonnées : {{currentPlace.location.coordinates[0]}} {{currentPlace.location.coordinates[1]}}</p>
 
             <app-update-place [hidden]="!showHideUpdateForm"> </app-update-place>
         </mat-card-content>

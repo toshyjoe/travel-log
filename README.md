@@ -1,5 +1,16 @@
 # TravelLog
 
+## Aproche
+
+### Problèmes, obstacles, solutions
+
+
+### Présentation de l'application
+
+### Choix de développement
+
+# TravelLog - more informations
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
 
 ## Development server

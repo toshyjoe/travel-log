@@ -3,11 +3,29 @@
 ## Aproche
 
 ### Problèmes, obstacles, solutions
+Le premier problème a été de trouver une solution pour passer un objet à un autre composant qui n'est pas un composant enfant. 
+Pour cela, découverte de BehaviorSubject et Subject de rxjs permettant de partager un objet dans un shareService, pour que tous les composants qui subscribe puissent détecter la modification, par exemple du Trip sélectionné. 
+
 
 
 ### Présentation de l'application
 
+
+
 ### Choix de développement
+#### Intérêt pour les outils Google
+Connaissant déjà bootstrap mais n'ayant aucune notion de Material, le projet a été une bonne occasion de s'y plonger. 
+J'ai voulu tester (tant bien que mal) de reprendre la structure d'une application Google (style gMail)avec  une colonne sur la gauche de l'écran qui propose les Trips de l'utilisateur (comme gMail propose les dossiers/label) et avoir le détail du trip sélectionné sur la grande partie droite de l'écran (map + détail du trip + détail des lieux). 
+https://material.angular.io/
+
+Utilisant Google maps fréquemment comme utilisateur mais jamais eu l'occasion dans un projet de développement, c'était également une bonne occasion de voir comment Google propose ses API. 
+Après quelques bonnes heures, la carte affiche bien les markers des lieux du Trip sélectionné. 
+
+### Amélioration possibles
+Meilleures gestion des erreurs. 
+Chargement des images des Places par upload plutôt que par saisie de l'url de l'image. 
+Utilisation correcte de GitHub. N'étant pas (pas encore!) habitué à l'outil, je suis resté sur la branche Master. Je tente à présent, pour ma culture générale, la rédaction du README dans une nouvelle branche pour la fusionner ensuite. 
+
 
 # TravelLog - more informations
 

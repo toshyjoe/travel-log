@@ -8,9 +8,33 @@ Pour cela, découverte de BehaviorSubject et Subject de rxjs permettant de parta
 
 
 
+
 ### Présentation de l'application
+#### Partie de gauche 
+Le panneau de gauche affiche la liste des voyages de l'utilisateur. 
+Deux boutons "Mes voyages" et "Tous" affichent soit tous les voyages soient uniquement ceux créés par l'utilisateur. 
+En bas de la liste des voyages, un menu permettant de d'ajouter un nouveau voyage. 
+Lors de la sélection d'un voyage, la carte se positionne sur le premier lieu du voyage. 
 
 
+Une fois le voyage sélectionné, la liste des places apparaît. 
+Celle-ci peut être filtrée. Le filtre s'applique au fur et à mesure que l'on tape dans le champs de filtre. 
+
+En bas de la liste, possibilité d'ajouter une nouvelle place au voyage. 
+
+
+#### Partie de droite 
+
+Un bouton "plein écran" permet de cacher la zone de gauche pour voir la carte sur toute la largeur de l'écran. 
+
+En dessous, une zone de recherche qui s'affiche lorsqu'on clique dessus. 
+Celle-ci permet de rechercher un voyage par son nom exacte, ou de saisir un texte qui sera recherché dans les titres et les descriptions (par ex: "road trip").  
+
+Lors de la première connexion, aucun voyage n'est sélectionné, la carte se positionne sur la zone géolocalisée de l'utilisateur. 
+
+Une fois un voyage sélectionné, le détail du voyage est visible sous la carte. Le voyage peut être modifié ou supprimé. 
+
+En dessous, le détail du lieu sélectionné. Qu'il soit sélectionné dans la liste à gauche ou en cliquant sur le marker sur la carte. 
 
 ### Choix de développement
 #### Intérêt pour les outils Google

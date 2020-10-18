@@ -50,12 +50,29 @@ En dessous, le détail du lieu sélectionné. Qu'il soit sélectionné dans la l
 #### Aperçu 
 
 Login ou création d'un nouveau user : 
+
 ![alt text](https://github.com/toshyjoe/travel-log/blob/master/src/assets/img/screenshot_connect.jpg)
 
+
 Application :
+
+1. Afficher tous les voyages ou uniquement ceux du user
+2. Liste des voyages
+3. Ajouter un nouveau voyage
+4. Filtrer la liste des lieux
+5. Liste des lieux du voyage sélectionné
+6. Ajouter un lieu au voyage sélectionné
+7. Cacher la partie de gauche -> carte en plein écran
+8. Afficher la recherche
+9. Carte
+10. Détail du voyage sélectionné
+11. Détail du lieu sélectionné
+
 ![alt text](https://github.com/toshyjoe/travel-log/blob/master/src/assets/img/screenshot_app.jpg)
 
+
 Recherche : 
+
 ![alt text](https://github.com/toshyjoe/travel-log/blob/master/src/assets/img/screenshot_search.jpg)
 
 

@@ -6,6 +6,6 @@ export class GeoJsonPoint {
 
     constructor(){
         this.type = 'Point'; 
-        this.coordinates = ['3', '4']; 
+        this.coordinates = ['6.938473', '46.997597']; 
     }
 }

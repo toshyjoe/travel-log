@@ -43,8 +43,8 @@ export class TripService {
 
   // search by title 
   searchTrip(params : String): Observable<Trip[]> {
-    console.log('trip.service request ' + `${apiUrl}/trips?${params}`); 
-    return this.http.get<Trip[]>(`${apiUrl}/trips${params}`)
+    return this.http.get<Trip[]>(`${apiUrl}/trips${params}`); 
+    //console.log('trip.service request ' + `${apiUrl}/trips?${params}`); 
   }
 
 
@@ -57,7 +57,7 @@ export class TripService {
      .post<TripResponse>(`${apiUrl}/trips`, tripRequest, { headers:this.header})
      .pipe(
        map((response) => {
-        console.log(response)
+        //console.log(response); 
         return response.trip; 
        })
      );   
@@ -73,7 +73,7 @@ export class TripService {
      .patch<TripResponse>(`${apiUrl}/trips/${this.currentTrip.id}`, tripRequest, { headers:this.header})
      .pipe(
        map((response) => {
-        console.log(response)
+        //console.log(response); 
         return response.trip; 
        })
      );  

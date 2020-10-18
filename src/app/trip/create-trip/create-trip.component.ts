@@ -47,9 +47,8 @@ export class CreateTripComponent  {
 
       this.tripService.createTrip(this.tripRequest).subscribe({
         next: (newTrip) => {
-          //form.controls.title.markAsUntouched; 
           this.tripRequest = new TripRequest(); 
-          //form.reset; 
+          
           form.form.reset; 
           this.data.newTrip(null); 
           this.openSnackBar('Trip created! ', null); 

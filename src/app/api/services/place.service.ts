@@ -45,11 +45,14 @@ export class PlaceService {
       'Authorization': `Bearer ${this.userToken}`
     })
 
+    console.log(' place request : '); 
+    console.log(placeRequest); 
+
     return this.http
      .post<PlaceResponse>(`${apiUrl}/places`, placeRequest, { headers:this.header})
      .pipe(
        map((response) => {
-        console.log(response)
+        //console.log(response); 
         return response.place; 
        })
      );   
@@ -65,7 +68,7 @@ export class PlaceService {
      .patch<PlaceResponse>(`${apiUrl}/places/${this.currentPlace.id}`, placeRequest, { headers:this.header})
      .pipe(
        map((response) => {
-        console.log(response)
+        //console.log(response); 
         return response.place; 
        })
      );  

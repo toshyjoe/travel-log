@@ -58,6 +58,7 @@ export class DetailTripComponent implements OnInit {
       belongToUser = true; 
     }
     return belongToUser; 
+    
   }
   
 

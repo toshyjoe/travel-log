@@ -31,7 +31,8 @@ export class UserService {
         console.log(response); 
         return response.user; 
       })
-    )
-    }
+    )}
   
+    
+
 }

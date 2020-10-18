@@ -6,6 +6,10 @@
 Le premier problème a été de trouver une solution pour passer un objet à un autre composant qui n'est pas un composant enfant. 
 Pour cela, découverte de BehaviorSubject et Subject de rxjs permettant de partager un objet dans un shareService, pour que tous les composants qui subscribe puissent détecter la modification, par exemple du Trip sélectionné. 
 
+Le deuxième problème a été de devoir afficher 2 composants dans le même routeur-outlet. Certainement car la structure a été mal définie au départ. 
+Contournement du problème en conditionnant l'affichage/masquage des composants. 
+En fin de compte, cela a permis de gérer tous les affichages puisqu'on reste toujours sur le même page. 
+Est-ce une deuxième façon de faire pour une 'petite' application qui n'affiche pas de nouvelle page pour afficher un formulaire de création/update ? Ou est-ce totalement faux de ne pas utiliser de routes?
 
 
 
@@ -20,7 +24,7 @@ Lors de la sélection d'un voyage, la carte se positionne sur le premier lieu du
 Une fois le voyage sélectionné, la liste des places apparaît. 
 Celle-ci peut être filtrée. Le filtre s'applique au fur et à mesure que l'on tape dans le champs de filtre. 
 
-En bas de la liste, possibilité d'ajouter une nouvelle place au voyage. 
+En bas de la liste, possibilité d'ajouter une nouvelle place au voyage actuellement sélectionné. 
 
 
 #### Partie de droite 
@@ -32,28 +36,31 @@ Celle-ci permet de rechercher un voyage par son nom exacte, ou de saisir un text
 
 Lors de la première connexion, aucun voyage n'est sélectionné, la carte se positionne sur la zone géolocalisée de l'utilisateur. 
 
-Une fois un voyage sélectionné, le détail du voyage est visible sous la carte. Le voyage peut être modifié ou supprimé. 
+Une fois un voyage sélectionné, dans la recherche ou dans la liste des voyages, le détail du voyage est visible sous la carte. Le voyage peut être modifié ou supprimé. 
 
 En dessous, le détail du lieu sélectionné. Qu'il soit sélectionné dans la liste à gauche ou en cliquant sur le marker sur la carte. 
+
+
 
 ### Choix de développement
 #### Intérêt pour les outils Google
 Connaissant déjà bootstrap mais n'ayant aucune notion de Material, le projet a été une bonne occasion de s'y plonger. 
-J'ai voulu tester (tant bien que mal) de reprendre la structure d'une application Google (style gMail)avec  une colonne sur la gauche de l'écran qui propose les Trips de l'utilisateur (comme gMail propose les dossiers/label) et avoir le détail du trip sélectionné sur la grande partie droite de l'écran (map + détail du trip + détail des lieux). 
+J'ai voulu tester (tant bien que mal) de reprendre la structure d'une application Google (style gMail) avec  une colonne sur la gauche de l'écran qui propose les Trips de l'utilisateur (comme gMail propose les dossiers/label) et avoir le détail du trip sélectionné sur la grande partie droite de l'écran (map + détail du trip + détail des lieux). 
 https://material.angular.io/
 
 Utilisant Google maps fréquemment comme utilisateur mais jamais eu l'occasion dans un projet de développement, c'était également une bonne occasion de voir comment Google propose ses API. 
 Après quelques bonnes heures, la carte affiche bien les markers des lieux du Trip sélectionné. 
 
 ### Amélioration possibles
-Meilleures gestion des erreurs. 
 Chargement des images des Places par upload plutôt que par saisie de l'url de l'image. 
 
-Utilisation correcte de GitHub. N'étant pas (pas encore!) habitué à l'outil, je suis resté sur la branche Master. Je tente à présent, pour ma culture générale, la rédaction du README dans une nouvelle branche pour la fusionner ensuite. Il y a par contre la clé google utilisée pour l'api de maps qui est visible et ne devrait pas l'être. 
+Utilisation correcte de GitHub. 
+N'étant pas (pas encore!) habitué à l'outil, je suis resté sur la branche Master. Je tente à présent, pour ma culture générale, la rédaction du README dans une nouvelle branche pour la fusionner ensuite. 
+Il y a par contre la clé google utilisée pour l'api de maps qui est visible et ne devrait pas l'être. 
+La dernière partie mise en place -> notifications lors d'un create/update/delete sur un objet, a été faite sur une autre branche, puis ramenée dans la branche Master. 
+Objectif à la fin du module : suivre le cours Github -> merci pour le lien! 
 
-Manque des feed-back de confirmation de suppression/création des objets. Peut-être pas un message en vert/rouge lorsque success ou fail d'une action. 
-
-Quelques bug -> par ex: lorsqu'on crée un voyage, le formulaire se vide mais le panel reste ouvert avec le formulaire de création visible .
+Quelques bug -> par ex: lorsqu'on crée un voyage, le formulaire se vide mais le panel reste ouvert avec le formulaire de création visible. Idem pour les Places. 
 
 
 # TravelLog - more informations

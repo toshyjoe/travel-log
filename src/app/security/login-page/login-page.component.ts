@@ -3,6 +3,7 @@ import { AuthRequest } from "src/app/models/auth-request";
 import { AuthService } from "../auth.service";
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
+import { MatSnackBar } from '@angular/material/snack-bar'; 
 
 @Component({
   selector: "app-login-page",
@@ -22,7 +23,8 @@ export class LoginPageComponent {
    */
   loginError: boolean;
 
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(private auth: AuthService, private router: Router, 
+              private matSnackBar : MatSnackBar) {
     this.authRequest = new AuthRequest();
     this.loginError = false;
   }
@@ -38,12 +40,21 @@ export class LoginPageComponent {
 
       // Perform the authentication request to the API.
       this.auth.login(this.authRequest).subscribe({
-        next: () => this.router.navigateByUrl("/"),
+        next: () => {
+          this.router.navigateByUrl("/"), 
+          this.openSnackBar('Welcome ! ', null); 
+
+        },
         error: (err) => {
           this.loginError = true;
-          console.warn(`Authentication failed: ${err.message}`);
+          this.openSnackBar('Authentication failed ! ', null); 
+          //console.warn(`Authentication failed: ${err.message}`);
         },
       });
     }
+  }
+
+  openSnackBar(message, action) {
+    this.matSnackBar.open(message, action, {duration: 2000}); 
   }
 }

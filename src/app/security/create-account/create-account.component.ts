@@ -5,6 +5,7 @@ import { UserService } from 'src/app/api/services/user.service';
 import { AuthRequest } from 'src/app/models/auth-request';
 import { UserRequest } from 'src/app/models/user-request';
 import { AuthService } from '../auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar'; 
 
 @Component({
   selector: 'app-create-account',
@@ -18,7 +19,8 @@ export class CreateAccountComponent implements OnInit {
   createError: boolean; 
   loginError: boolean; 
 
-  constructor(private userService: UserService, private router: Router, private auth: AuthService) { 
+  constructor(private userService: UserService, private router: Router, 
+              private auth: AuthService, private matSnackBar : MatSnackBar) { 
     this.userRequest = new UserRequest()
     this.createError = false; 
     this.loginError = false; 
@@ -39,16 +41,21 @@ export class CreateAccountComponent implements OnInit {
           this.authRequest.password = this.userRequest.password; 
 
           this.auth.login(this.authRequest).subscribe({
-            next: () => this.router.navigateByUrl("/"),
+            next: () => {
+              this.router.navigateByUrl("/"),
+              this.openSnackBar('Account created! ', null)               
+            },
             error: (err) => {
               this.loginError = true;
-              console.warn(`Authentication failed: ${err.message}`);
+              this.openSnackBar('Authentication failed ', null)
+              // console.warn(`Authentication failed: ${err.message}`);
             },
           });
         },
         error: (err) => {
           this.createError = true; 
           console.log(`----- ERREUR : lors de la Creation de user : ${err.message}`); 
+          this.openSnackBar('Account creation failed! ', null)
         }
       })
 
@@ -56,4 +63,7 @@ export class CreateAccountComponent implements OnInit {
 
   }
 
+  openSnackBar(message, action) {
+    this.matSnackBar.open(message, action, {duration: 2000}); 
+  }
 }

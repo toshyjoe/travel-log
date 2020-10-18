@@ -48,7 +48,12 @@ Après quelques bonnes heures, la carte affiche bien les markers des lieux du Tr
 ### Amélioration possibles
 Meilleures gestion des erreurs. 
 Chargement des images des Places par upload plutôt que par saisie de l'url de l'image. 
-Utilisation correcte de GitHub. N'étant pas (pas encore!) habitué à l'outil, je suis resté sur la branche Master. Je tente à présent, pour ma culture générale, la rédaction du README dans une nouvelle branche pour la fusionner ensuite. 
+
+Utilisation correcte de GitHub. N'étant pas (pas encore!) habitué à l'outil, je suis resté sur la branche Master. Je tente à présent, pour ma culture générale, la rédaction du README dans une nouvelle branche pour la fusionner ensuite. Il y a par contre la clé google utilisée pour l'api de maps qui est visible et ne devrait pas l'être. 
+
+Manque des feed-back de confirmation de suppression/création des objets. Peut-être pas un message en vert/rouge lorsque success ou fail d'une action. 
+
+Quelques bug -> par ex: lorsqu'on crée un voyage, le formulaire se vide mais le panel reste ouvert avec le formulaire de création visible .
 
 
 # TravelLog - more informations

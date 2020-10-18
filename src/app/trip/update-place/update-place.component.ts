@@ -5,6 +5,7 @@ import { SharedService } from 'src/app/api/services/shared.service';
 import { AuthRequest } from 'src/app/models/auth-request';
 import { Place } from 'src/app/models/place';
 import { PlaceRequest } from 'src/app/models/place-request';
+import { MatSnackBar } from '@angular/material/snack-bar'; 
 
 @Component({
   selector: 'app-update-place',
@@ -20,7 +21,8 @@ export class UpdatePlaceComponent implements OnInit {
   currentPlace: Place; 
 
   constructor(private placeService: PlaceService, 
-              private data : SharedService
+              private data : SharedService, 
+              private matSnackBar : MatSnackBar
 
     ) { 
     this.authRequest = new AuthRequest(); 
@@ -32,7 +34,7 @@ export class UpdatePlaceComponent implements OnInit {
       this.data.currentPlace.subscribe(place => this.placeRequest.pictureUrl = place.pictureUrl); 
       this.data.currentPlace.subscribe(place => this.placeRequest.location.coordinates[0] = place.location.coordinates[0]); 
       this.data.currentPlace.subscribe(place => this.placeRequest.location.coordinates[1] = place.location.coordinates[1]); 
-  
+    
   }
 
 
@@ -51,10 +53,12 @@ export class UpdatePlaceComponent implements OnInit {
         next: (updatedPlace) => {
           this.placeRequest = new PlaceRequest(); 
           this.data.updatePlace(updatedPlace); 
+          this.openSnackBar('Place updated! ', null); 
         }, 
         error: (err) => {
           this.updatePlaceError = true; 
-          console.warn(`Place update failed: ${err.message}`);
+          this.openSnackBar(`Place not updated!`, null); 
+          //console.warn(`Place update failed: ${err.message}`);
         }
       })
      
@@ -62,4 +66,7 @@ export class UpdatePlaceComponent implements OnInit {
     }
   }
 
+  openSnackBar(message, action) {
+    this.matSnackBar.open(message, action, {duration: 2000}); 
+  }
 }

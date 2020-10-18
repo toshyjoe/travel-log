@@ -5,6 +5,7 @@ import { Place } from 'src/app/models/place';
 import { Trip } from 'src/app/models/trip';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/security/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar'; 
 
 @Component({
   selector: 'app-detail-place',
@@ -23,7 +24,8 @@ export class DetailPlaceComponent implements OnInit {
 
   constructor(private placeService: PlaceService, 
               private data : SharedService, 
-              private authService: AuthService) { 
+              private authService: AuthService, 
+              private matSnackBar : MatSnackBar) { 
 
                 this.deleteError = false;  
                 this.deleteSuccess = false; 
@@ -65,13 +67,20 @@ export class DetailPlaceComponent implements OnInit {
       next: () => {
         this.data.deletedPlace(this.currentPlace); 
         this.currentPlace = new Place(); 
+        this.openSnackBar('Place deleted! ', null); 
+
       }, 
       error: (err) => {
-        console.warn(`Place delete failed: ${err.message}`);
+        this.openSnackBar('Place delete failed! ', null); 
+        //console.warn(`Place delete failed: ${err.message}`);
         this.deleteError = true; 
       }
 
     })
     
+  }
+
+  openSnackBar(message, action) {
+    this.matSnackBar.open(message, action, {duration: 2000}); 
   }
 }

@@ -26,6 +26,12 @@ Celle-ci peut être filtrée. Le filtre s'applique au fur et à mesure que l'on 
 
 En bas de la liste, possibilité d'ajouter une nouvelle place au voyage actuellement sélectionné. 
 
+Les actions Create/Update/Delete ne sont accessible que pour le propriétaire des voyages. 
+
+Users/password des users ayant créé les voyages existants : 
+ - anthony/1234
+ - jenny/1234
+
 
 #### Partie de droite 
 
@@ -39,6 +45,22 @@ Lors de la première connexion, aucun voyage n'est sélectionné, la carte se po
 Une fois un voyage sélectionné, dans la recherche ou dans la liste des voyages, le détail du voyage est visible sous la carte. Le voyage peut être modifié ou supprimé. 
 
 En dessous, le détail du lieu sélectionné. Qu'il soit sélectionné dans la liste à gauche ou en cliquant sur le marker sur la carte. 
+
+
+#### Aperçu 
+
+Login ou création d'un nouveau user : 
+![alt text](https://github.com/toshyjoe/travel-log/blob/master/src/assets/img/screenshot_connect.jpg)
+
+Application :
+![alt text](https://github.com/toshyjoe/travel-log/blob/master/src/assets/img/screenshot_app.jpg)
+
+Recherche : 
+![alt text](https://github.com/toshyjoe/travel-log/blob/master/src/assets/img/screenshot_search.jpg)
+
+
+
+
 
 
 

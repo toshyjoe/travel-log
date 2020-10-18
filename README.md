@@ -11,6 +11,11 @@ Contournement du problème en conditionnant l'affichage/masquage des composants.
 En fin de compte, cela a permis de gérer tous les affichages puisqu'on reste toujours sur le même page. 
 Est-ce une deuxième façon de faire pour une 'petite' application qui n'affiche pas de nouvelle page pour afficher un formulaire de création/update ? Ou est-ce totalement faux de ne pas utiliser de routes?
 
+Je me suis progressivement aperçu que les routes auraient eux 2 avantages : 
+1. pouvoir transmettre le lien d'un voyage à quelqu'un. 
+2. pouvoir appliquer des guard sur les routes. 
+3. probablement qu'il y a possibilité d'ajouter des middelware, qui nécessite également le routage. 
+
 
 
 ### Présentation de l'application

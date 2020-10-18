@@ -6,6 +6,7 @@ import { AuthRequest } from 'src/app/models/auth-request';
 import { Place } from 'src/app/models/place';
 import { PlaceRequest } from 'src/app/models/place-request';
 import { Trip } from 'src/app/models/trip';
+import { MatSnackBar } from '@angular/material/snack-bar'; 
 
 @Component({
   selector: 'app-create-place',
@@ -21,7 +22,8 @@ export class CreatePlaceComponent implements OnInit {
    selectedTrip: Trip; 
 
   constructor(private placeService: PlaceService, 
-              private data : SharedService) { 
+              private data : SharedService, 
+              private matSnackBar : MatSnackBar) { 
 
         this.authRequest = new AuthRequest(); 
         this.placeRequest = new PlaceRequest(); 
@@ -47,6 +49,7 @@ export class CreatePlaceComponent implements OnInit {
           
           form.form.reset; 
           this.data.newPlace(null); 
+          this.openSnackBar('Place created! ', null); 
 
         },
         error: (err) => {
@@ -54,10 +57,15 @@ export class CreatePlaceComponent implements OnInit {
           console.log(err); 
 
           this.createPlaceError = true;
-          console.warn(`Place creation failed: ${err.message}`);
+          this.openSnackBar('Place creation failed! ', null); 
+          //console.warn(`Place creation failed: ${err.message}`);
         },
       });
     }
+  }
+
+  openSnackBar(message, action) {
+    this.matSnackBar.open(message, action, {duration: 2000}); 
   }
 
 }

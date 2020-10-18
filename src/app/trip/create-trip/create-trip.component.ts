@@ -7,6 +7,7 @@ import { TripService } from 'src/app/api/services/trip.service';
 import { Trip } from 'src/app/models/trip';
 import { TripRequest } from 'src/app/models/trip-request';
 import { SharedService } from 'src/app/api/services/shared.service';
+import { MatSnackBar } from '@angular/material/snack-bar'; 
 
 
 
@@ -27,7 +28,8 @@ export class CreateTripComponent  {
 
   constructor(private tripService: TripService, 
               private router: Router, 
-              private data : SharedService) { 
+              private data : SharedService, 
+              private matSnackBar : MatSnackBar) { 
 
     this.authRequest = new AuthRequest(); 
     this.tripRequest = new TripRequest(); 
@@ -50,14 +52,19 @@ export class CreateTripComponent  {
           //form.reset; 
           form.form.reset; 
           this.data.newTrip(null); 
+          this.openSnackBar('Trip created! ', null); 
 
         },
         error: (err) => {
           this.createTripError = true;
-          console.warn(`Trip creation failed: ${err.message}`);
+          this.openSnackBar('Trip creation failed! ', null); 
+          //console.warn(`Trip creation failed: ${err.message}`);
         },
       });
     }
   }
 
+  openSnackBar(message, action) {
+    this.matSnackBar.open(message, action, {duration: 2000}); 
+  }
 }

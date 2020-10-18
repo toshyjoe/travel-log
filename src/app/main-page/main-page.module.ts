@@ -10,6 +10,7 @@ import { MainPageRoutingModule } from './main-page-routing.module';
 import { MainPageComponent } from './main-page.component'; 
 import { SecurityModule } from '../security/security.module'; 
 import { MapsModule  } from '../maps/maps.module'; 
+import { NotificationModule } from '../notification/notification.module'; 
 
 
 
@@ -27,7 +28,8 @@ import { MapsModule  } from '../maps/maps.module';
     MatGridListModule,
     MainPageRoutingModule,
     SecurityModule, 
-    MapsModule
+    MapsModule, 
+    NotificationModule
   ], 
   exports: [
     MainPageComponent

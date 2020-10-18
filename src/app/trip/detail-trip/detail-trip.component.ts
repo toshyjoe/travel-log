@@ -5,6 +5,7 @@ import { TripService } from 'src/app/api/services/trip.service';
 import { Trip } from 'src/app/models/trip';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/security/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar'; 
 
 @Component({
   selector: 'app-detail-trip',
@@ -26,7 +27,8 @@ export class DetailTripComponent implements OnInit {
   constructor(private tripService: TripService, 
               private data : SharedService, 
               private authService: AuthService, 
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute, 
+              private matSnackBar : MatSnackBar) {
                 
           this.deleteError = false;  
           this.deleteSuccess = false; 
@@ -70,9 +72,11 @@ export class DetailTripComponent implements OnInit {
       next: () => {
         this.data.deletedTrip(this.currentTrip);  
         this.currentTrip = new Trip(); 
+        this.openSnackBar('Trip deleted! ', null); 
       }, 
       error: (err) => {
-        console.warn(`Trip delete failed: ${err.message}`);
+        this.openSnackBar('Trip delete failed! ', null); 
+        //console.warn(`Trip delete failed: ${err.message}`);
         this.deleteError = true; 
 
       }
@@ -84,5 +88,7 @@ export class DetailTripComponent implements OnInit {
     this.data.updateTrip(trip); 
   }
 
-
+  openSnackBar(message, action) {
+    this.matSnackBar.open(message, action, {duration: 2000}); 
+  }
 }

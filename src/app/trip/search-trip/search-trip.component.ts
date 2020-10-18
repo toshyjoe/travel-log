@@ -21,6 +21,9 @@ export class SearchTripComponent implements OnInit {
   searchTripRequest: SearchTripRequest; 
   searchTripError : boolean; 
   trips: Trip[]; 
+  panelExpanded : boolean; 
+  hideResult : boolean; 
+  hideNoResult: boolean; 
 
   constructor(private tripService: TripService, 
     private data : SharedService) { 
@@ -29,6 +32,9 @@ export class SearchTripComponent implements OnInit {
 
   ngOnInit(): void {
     this.trips = []; 
+    this.panelExpanded = false; 
+    this.hideResult = true; 
+    this.hideNoResult = true; 
   }
 
 
@@ -42,16 +48,20 @@ export class SearchTripComponent implements OnInit {
       var params = this.searchTripRequest.getParams(); 
       params=params.replace(" ","+");
 
-      console.log('PARAMS envoyés : ' + params); 
-
       this.tripService.searchTrip(params)
       .subscribe(
         trips => {trips.forEach(
             trip => {this.trips.push(trip)
             }
           ), 
-        console.log(this.trips); 
         this.searchTripRequest.initObject(); 
+        if(trips.length != 0) {
+          this.hideResult = false; 
+          this.hideNoResult = true; 
+        } else {
+          this.hideNoResult = false; 
+          this.hideResult = true; 
+        }
       },
           err => {  /*gestion des erreurs à revoir */ 
             console.warn(`Les voyages n'ont pas pu être chargés! `, err); 
@@ -64,6 +74,7 @@ export class SearchTripComponent implements OnInit {
   }
 
   onSelectedTrip(trip){
+    this.panelExpanded = false; 
     this.data.changeTrip(trip); 
   }
 

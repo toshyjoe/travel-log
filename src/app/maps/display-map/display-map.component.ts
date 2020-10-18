@@ -53,13 +53,12 @@ export class DisplayMapComponent implements OnInit {
       this.loadPlacesByTrip(trip.id) 
       ); 
     
-    this.data.currentPlace.subscribe(place => { 
-      if (place != undefined) {
-        this.latitude = place.location.coordinates[1], 
-        this.longitude = place.location.coordinates[0] 
-      }
-      }
-        )
+      this.data.currentPlace.subscribe(place => { 
+        if (place != undefined) {
+          this.latitude = Number(place.location.coordinates[1]); 
+          this.longitude = Number(place.location.coordinates[0]); 
+        }
+      })
     
   }
 

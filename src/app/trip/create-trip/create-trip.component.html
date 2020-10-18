@@ -3,25 +3,42 @@
       <h2> Créer un voyage </h2>
     
       <form #creatTripForm="ngForm" (submit)="onSubmit(creatTripForm)"> 
-        <input type="text" 
-          placeholder="Titre"
-          [(ngModel)]="tripRequest.title"
-          name="title"
-          required
-          #title="ngModel"
-          minlength="3"
-          > 
+        
+      <!-- Field Nom -->
+      <mat-form-field floatLabel="never" 
+      appearance="fill" color="accent">
+
+        <mat-label for="name">Titre</mat-label>
+          <input matInput
+              type="text" 
+              placeholder="Titre"
+              [(ngModel)]="tripRequest.title"
+              name="title"
+              required
+              #title="ngModel"
+              minlength="3"> 
+
+          </mat-form-field>
 
         
-          <input type="text" 
-          placeholder="Description"
-          [(ngModel)]="tripRequest.description"
-          name="description"
-          required
-          #description
-          minlength="5"
-          [disabled]="title.invalid"
-          > 
+        <!-- Field Description -->
+        <mat-form-field floatLabel="never" 
+        appearance="fill" color="accent">
+
+        <mat-label for="description">Description</mat-label>
+
+          <input matInput
+              type="text" 
+              placeholder="Description"
+              [(ngModel)]="tripRequest.description"
+              name="description"
+              required
+              #description
+              minlength="5"
+              [disabled]="title.invalid"> 
+
+          </mat-form-field>
+
           <span *ngIf="description.invalid&&description.touched"> Saisir une description d'au moins 5 caractères</span>
 
 

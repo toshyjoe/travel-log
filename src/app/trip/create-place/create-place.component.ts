@@ -36,8 +36,7 @@ export class CreatePlaceComponent implements OnInit {
  
   onSubmit(form: NgForm) {
     if (form.valid) {
-      this.createPlaceError = false;
-      //this.placeRequest.tripId = '4994a7c2-aefa-43b9-a504-9960c25bdd4d'; 
+      this.createPlaceError = false; 
       this.placeRequest.tripId = this.selectedTrip.id; 
 
 
@@ -50,9 +49,6 @@ export class CreatePlaceComponent implements OnInit {
 
         },
         error: (err) => {
-          console.log(" - inside submit place 3"); 
-          console.log(err); 
-
           this.createPlaceError = true;
           console.warn(`Place creation failed: ${err.message}`);
         },

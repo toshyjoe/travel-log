@@ -12,7 +12,7 @@ export class PlaceRequest {
     constructor() {
         this.name = ''; 
         this.description = ''; 
-        this.pictureUrl = ''; 
+        this.pictureUrl = 'https://www.fri.ch/site_2015/wp-content/plugins/ajax-search-pro/img/default.jpg'; 
         this.location = new GeoJsonPoint(); 
     }
 }

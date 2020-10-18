@@ -52,15 +52,21 @@ Utilisant Google maps fréquemment comme utilisateur mais jamais eu l'occasion d
 Après quelques bonnes heures, la carte affiche bien les markers des lieux du Trip sélectionné. 
 
 ### Amélioration possibles
-Chargement des images des Places par upload plutôt que par saisie de l'url de l'image. 
+- Chargement des images des Places par upload plutôt que par saisie de l'url de l'image. 
 
-Utilisation correcte de GitHub. 
+- Ajouter un nouveau lieu en cliquant sur la carte et non seulement en remplissant un formulaire de création - et/ou remplir les champs des coordonnées du formulaire en cliquant sur un point de la carte. 
+
+- Utilisation correcte de GitHub. 
 N'étant pas (pas encore!) habitué à l'outil, je suis resté sur la branche Master. Je tente à présent, pour ma culture générale, la rédaction du README dans une nouvelle branche pour la fusionner ensuite. 
 Il y a par contre la clé google utilisée pour l'api de maps qui est visible et ne devrait pas l'être. 
 La dernière partie mise en place -> notifications lors d'un create/update/delete sur un objet, a été faite sur une autre branche, puis ramenée dans la branche Master. 
 Objectif à la fin du module : suivre le cours Github -> merci pour le lien! 
 
-Quelques bug -> par ex: lorsqu'on crée un voyage, le formulaire se vide mais le panel reste ouvert avec le formulaire de création visible. Idem pour les Places. 
+- Afficher le user qui a créé le voyage
+
+- Quelques bug -> par ex: lorsqu'on crée un voyage, le formulaire se vide mais le panel reste ouvert avec le formulaire de création visible. Idem pour les Places. 
+
+- etc.. 
 
 
 # TravelLog - more informations

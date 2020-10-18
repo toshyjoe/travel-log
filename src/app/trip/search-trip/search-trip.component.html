@@ -4,8 +4,8 @@
     <button mat-button (click)="accordion.openAll()">Expand All</button>
     <button mat-button (click)="accordion.closeAll()">Collapse All</button>-->
   </div>
-  <mat-accordion class="example-headers-align" >
-    <mat-expansion-panel >
+  <mat-accordion class="example-headers-align" aria-expanded="All">
+    <mat-expansion-panel [(expanded)]="panelExpanded">
       <mat-expansion-panel-header>
         <mat-panel-description>
           Chercher un voyage
@@ -52,7 +52,8 @@
 
         <mat-grid-tile>
             <mat-list role="list">
-                <h2> Résultats de recherche : </h2>
+              <h2 [hidden]="hideResult"> Résultats de recherche : </h2>
+              <h3 [hidden]="hideNoResult"> Aucun résultats pour cette recherche  </h3>
                 <mat-list-item role="listitem" *ngFor="let trip of trips">
                     <div mat-line>
                         <button mat-button (click)="onSelectedTrip(trip)">  

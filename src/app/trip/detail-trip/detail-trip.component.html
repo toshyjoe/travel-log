@@ -1,32 +1,32 @@
 <div [hidden]="!currentTrip.id"> 
     <mat-card> 
 
-        <mat-card-title>
-            {{currentTrip.title}}
-        </mat-card-title>
-
+        <mat-card-header>
+            <mat-card-title> {{currentTrip.title}} </mat-card-title>
+         </mat-card-header>
         
-        <mat-card-content>
-            {{currentTrip.description}}
-            
-            <app-update-trip [hidden]="!showHideUpdateForm" > </app-update-trip>
 
+        <mat-card-content class="cardContent">
+                <p><strong> Description : </strong></p>
+                <p>{{currentTrip.description}}</p>
+                
+                <app-update-trip [hidden]="!showHideUpdateForm" > </app-update-trip>
 
-
+                <p> 
+                    <small> Créé le {{ currentTrip.createdAt | date }}</small> <br>
+                    <small> Modifié le {{ currentTrip.updatedAt | date }}</small> <br>
+                </p>
         </mat-card-content>
 
+
         <mat-card-actions> 
-            <button  mat-button color="warn" [hidden]="!isTripOfUser()" (click)="onDelete()"> Supprimer </button>
-            <button  mat-raised-button color="accent" [hidden]="!isTripOfUser()" (click)="showUpdateForm()"> Editer </button>
+            <button  mat-button color="accent" *ngIf="isTripOfUser()" (click)="onDelete()"> Supprimer </button>
+            <button  mat-raised-button color="accent" *ngIf="isTripOfUser()" (click)="showUpdateForm()"> Editer </button>
             <div [hidden]="!deleteError"> 
                 <span style="color:red"> Erreur lors de la suppression</span>
             </div>
         </mat-card-actions>
-            
-        <mat-card-footer>
-            <small> Créé le {{ currentTrip.createdAt | date }}</small> <br>
-            <small> Modifié le {{ currentTrip.updatedAt | date }}</small> <br>
-        </mat-card-footer>
+         
 
     </mat-card>
 </div>

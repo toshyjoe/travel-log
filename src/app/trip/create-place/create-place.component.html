@@ -4,69 +4,98 @@
   
     <form #creatPlaceForm="ngForm" (submit)="onSubmit(creatPlaceForm)"> 
 
-      <br>
-  <label> Nom  </label>
-      <input type="text" 
-        placeholder="Nom"
-        [(ngModel)]="placeRequest.name"
-        name="name"
-        required
-        #title="ngModel"
-        minlength="3"
-        > 
+      <!-- Field Nom -->
+      <mat-form-field floatLabel="never" 
+        appearance="fill" color="accent">
 
-        <span *ngIf="title.invalid&&title.dirty"> Saisir un nom</span>
+        <mat-label for="name">Nom</mat-label>
+        <input matInput 
+              type="text" 
+              placeholder="Nom"
+              [(ngModel)]="placeRequest.name"
+              name="name"
+              required
+              #title="ngModel"
+              minlength="3"> 
 
-        <br>
-        <br>
-    <label> Description </label>
-        <input type="text" 
-        placeholder="Description"
-        [(ngModel)]="placeRequest.description"
-        name="description"
-        required
-        #description
-        minlength="5"
-        > 
+      </mat-form-field>
 
+      <span *ngIf="title.invalid&&title.dirty"> Saisir un nom</span>
+
+      
+      <!-- Field Description -->
+      <mat-form-field floatLabel="never" 
+        appearance="fill" color="accent">
+
+        <mat-label for="description">Description</mat-label>
+
+        <input matInput 
+              type="text" 
+              placeholder="Description"
+              [(ngModel)]="placeRequest.description"
+              name="description"
+              required
+              #description
+              minlength="5"> 
+
+      </mat-form-field>
         
       
-        <br>
-        <br>
-    <label> Url de l'image </label>
-        <input type="text" 
-        placeholder="ex : https://www.google.ch/images"
-        [(ngModel)]="placeRequest.pictureUrl"
-        name="pictureUrl"
-        #pictureUrl
-        > 
+
+      
+      <!-- Field Url de l'image  -->
+      <mat-form-field floatLabel="never" 
+        appearance="fill" color="accent">
+
+        <mat-label for="pictureUrl">Url de l'image </mat-label>
+
+        <input matInput
+              type="text" 
+              placeholder="ex : https://www.google.ch/images"
+              [(ngModel)]="placeRequest.pictureUrl"
+              name="pictureUrl"
+              #pictureUrl> 
+      </mat-form-field>
         
       
-        <br>
-        <br>
-    <label> Longitude (-180 -> 180)</label>
-        <input type="text" 
-        placeholder="x"
-        [(ngModel)]="placeRequest.location.coordinates[0]"
-        name="locationX"
-        #locationX
-        > 
+      <!-- Field Longitude -->
+      <mat-form-field floatLabel="never" 
+                      appearance="fill" color="accent">
 
-        <br>
-        <br>
-    <label> Latitude (-90 -> 90)</label>
-        <input type="text" 
-        placeholder="y"
-        [(ngModel)]="placeRequest.location.coordinates[1]"
-        name="locationY"
-        #locationX
-        > 
+        <mat-label for="locationX">Longitude (-180 -> 180)</mat-label>
+
+        <input matInput
+              type="text" 
+              placeholder="x"
+              [(ngModel)]="placeRequest.location.coordinates[0]"
+              name="locationX"
+              #locationX> 
+      </mat-form-field>
+
+      
+      <!-- Field Latitude -->
+      <mat-form-field floatLabel="never" 
+                      appearance="fill" color="accent">
+
+        <mat-label for="locationY">Latitude (-90 -> 90)</mat-label>
+
+        <input matInput
+              type="text" 
+              placeholder="y"
+              [(ngModel)]="placeRequest.location.coordinates[1]"
+              name="locationY"
+              #locationX> 
+      </mat-form-field>
 
 
+      <!-- Submit button -->
         <button  mat-raised-button color="accent" type="submit" 
           [disabled]="creatPlaceForm.invalid"> 
           Ajouter 
         </button>
+
+        
+
     </form>
 
 </div>
